@@ -168,6 +168,17 @@ def fasta_input(spec, ver, goamd64):
     return path
 
 
+def steal_secs():
+    """Host 'steal' time for this VM (all CPUs), from /proc/stat; a VM being
+    throttled or sharing cores shows it growing during a run."""
+    try:
+        with open("/proc/stat") as f:
+            fields = f.readline().split()
+        return int(fields[8]) / os.sysconf("SC_CLK_TCK")
+    except (OSError, IndexError, ValueError):
+        return 0.0
+
+
 def execute(argv, stdin_path=None, stdout=subprocess.DEVNULL):
     """Run once; returns (status, elapsed s, rusage)."""
     fin = open(stdin_path, "rb") if stdin_path else subprocess.DEVNULL
@@ -325,13 +336,16 @@ def cmd_run(a):
     for i in range(a.runs):
         log(f"-- round {i + 1}/{a.runs}")
         for ver, key, argv, stdin in ready:
+            st0 = steal_secs()
             rc, el, ru = execute(argv, stdin)
             r = out["results"][ver][key]
             r["samples"].append(sample(el, ru, rc))
+            r["samples"][-1]["steal"] = round(steal_secs() - st0, 3)
             cpu, rss = r["samples"][-1]["cpu"], ru.ru_maxrss
             if rc != 0:
                 r["status"] = f"exit-{rc}"
-            log(f"   {ver:>10} {key:<16} {el:8.3f}s  cpu {cpu:8.3f}s  {rss // 1024:6d} MB")
+            log(f"   {ver:>10} {key:<16} {el:8.3f}s  cpu {cpu:8.3f}s  {rss // 1024:6d} MB"
+                f"  steal {r['samples'][-1]['steal']:.2f}s")
 
     for ver in out["results"]:
         for r in out["results"][ver].values():

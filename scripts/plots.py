@@ -82,7 +82,12 @@ def load_sweep(d):
         machine = machine or j["machine"]
         for ver, res in j["results"].items():
             for key, r in res.items():
-                data.setdefault(key, {})[ver] = r
+                # several files may cover the same (version, program): keep
+                # the one with the most timed samples
+                cur = data.setdefault(key, {}).get(ver)
+                if cur is None or len(r.get("samples") or []) > len(cur.get("samples") or []) \
+                        or (j["runs"] > 0 and r.get("status") == "ok"):
+                    data[key][ver] = r
     return data, machine
 
 
