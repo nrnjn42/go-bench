@@ -4,7 +4,10 @@ Goal: take the fastest Go programs from the
 [Benchmarks Game Go page](https://benchmarksgame-team.pages.debian.net/benchmarksgame/fastest/go.html)
 and re-measure them for the latest patch of every Go minor release, newest first
 (go1.27.1, go1.26.8, go1.25.14, …), on one machine, with one harness, so the numbers
-compare cleanly for a blog post on how Go performance has changed.
+compare cleanly across releases.
+
+> **Summary** (GCP, 4 dedicated cores, 5 interleaved runs, 0 steal): go1.27.1 is 11.5% faster than go1.23.12 and about 41% faster
+> than go1.2.2 (geomean elapsed across 12 programs).
 
 ## Final results (GCP, 2026-09-25)
 
@@ -16,14 +19,14 @@ Report and charts: [`results/final/summary.md`](results/final/summary.md).
 
 **go1.23.12 → go1.27.1: 11.5% faster** (geomean elapsed), 12.3% less CPU, modelled energy −11.5%.
 
-| program | 1.23 → 1.27 elapsed | notes |
+| program | 1.23 → 1.27 elapsed | where |
 |---|---:|---|
-| k-nucleotide | **−57.5%** | Go 1.24 map rewrite ("Swiss tables") |
-| binary-trees | **−30.7%** | GC and allocator; −14% in 1.27 alone |
-| pidigits (pure Go) | **−15.9%** | `math/big`, in 1.25 |
-| regex-redux (PCRE) | −7.1% | cheaper cgo calls, in 1.26 |
+| k-nucleotide | **−57.5%** | step at go1.24 |
+| binary-trees | **−30.7%** | −14% at go1.27 |
+| pidigits (pure Go) | **−15.9%** | step at go1.25 |
+| regex-redux (PCRE) | −7.1% | step at go1.26 |
 | regex-redux (pure Go), fannkuch-redux | −2% | |
-| n-body, mandelbrot, fasta, spectral-norm, pidigits (GMP) | ±1% | numeric code has been flat since go1.7 |
+| n-body, mandelbrot, fasta, spectral-norm, pidigits (GMP) | ±1% | |
 | reverse-complement | +3.1% | peak memory +29% |
 
 **Whole history** (geomean elapsed relative to go1.27.1; 1.00 = as fast as 1.27):
@@ -32,11 +35,29 @@ Report and charts: [`results/final/summary.md`](results/final/summary.md).
 |---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
 | 1.69 | 1.83 | 1.42 | 1.39 | 1.21 | 1.16 | 1.16 | 1.12 | 1.14 | 1.14 | 1.13 | 1.06 | 1.04 | 1.01 | 1.00 |
 
-Big early gains (go1.5 compiler in Go, go1.7 SSA backend), a long plateau from go1.8 to go1.23, then most of the recent gain in
-go1.24 → go1.27. Energy vs 2017-era toolchains (model below): go1.8 → 1.27 −14%, go1.9 → −15%, go1.10 → −14%.
-Build time (compile + link, warm stdlib) is flat at about 0.15 s per program, apart from the go1.5–1.6 bump after the compiler rewrite.
+Build time (compile + link, warm stdlib) is about 0.15 s per program across releases, with a bump at go1.5–1.6.
 
-![1.23 vs 1.27](results/final/plots/go1.23.12-vs-go1.27.1.png)
+![go1.23 vs go1.27: change in elapsed time per program](results/final/plots/go1.23.12-vs-go1.27.1.png)
+
+### Every release, go1.2 → go1.27
+
+One panel per program; the shaded band is go1.23 → go1.27. Each point is the median of 5 interleaved runs on the GCP machine.
+
+**Elapsed time** (wall clock).
+
+![Elapsed time by Go release](results/final/plots/elapsed-by-version.png)
+
+**CPU time** (user + sys summed over all threads).
+
+![CPU time by Go release](results/final/plots/cpu-by-version.png)
+
+**Peak memory** (max RSS).
+
+![Peak memory by Go release](results/final/plots/memory-by-version.png)
+
+**Build time** (rebuild of the program only, compile + link, warm stdlib).
+
+![Build time by Go release](results/final/plots/build-by-version.png)
 
 ## Layout
 
@@ -170,33 +191,6 @@ gcloud compute scp --recurse go-bench:~/go-bench/results ./results-gcp --zone=us
 gcloud compute instances delete go-bench --zone=us-central1-a    # about $290/month if forgotten
 ```
 
-## Note: why Go trails C on the Benchmarks Game (and how much of that is SIMD)
-
-It is not memory zeroing. Go zeroes memory when it *allocates* it (it doesn't "erase after use"), and the CPU-bound programs allocate almost nothing in their hot loops.
-
-**Checked against the site's own leaderboard** (`performance/<task>.html`; the site marks programs with `*` = "possible hand-written vector instructions or unsafe"). The fastest C program in **5 of 10 tasks** is starred, i.e. hand-written SIMD. In the other 5 (fasta, k-nucleotide, binary-trees, pidigits, regex-redux) the fastest C is unstarred but calls C libraries: khash, APR pools, GMP, PCRE2. The star also misses GCC vector extensions: mandelbrot C #3 and #5 use `__attribute__((vector_size))` without being starred.
-
-Elapsed seconds from the site's data (go1.23.1, `GOAMD64=v2`, quad-core):
-
-| task | fastest C (SIMD) | fastest scalar C | fastest Go | Go ÷ fastest C | **Go ÷ scalar C** |
-|---|---:|---:|---:|---:|---:|
-| n-body | 2.10 (`*` #9) | 4.98 (#6) | 6.39 (#3) | 3.0× | **1.28×** |
-| spectral-norm | 0.40 (`*` #6) | 1.43 (#3) | 1.43 (#4) | 3.6× | **1.00×** |
-| mandelbrot | 1.29 (`*` #6) | 4.07 (#9) | 3.77 (#4) | 2.9× | **0.93×** |
-| fannkuch-redux | 2.14 (`*` #6) | 7.28 (#5) | 8.36 (#3) | 3.9× | **1.15×** |
-| reverse-complement | 0.44 (`*` #7) | 0.49 (#9) | 1.93 (#6) | 4.4× | 3.9× (buffer handling, not SIMD) |
-
-Same-machine check (dev VM, n-body 50M, identical output): C #6 `gcc -O2` 4.26 s, **Go 1.27 `GOAMD64=v3` 4.28 s**, Go 1.27 `v1` 4.78 s, C #6 `gcc -O3 -march=ivybridge` 3.59 s.
-
-Where the gap comes from:
-
-1. **SIMD**, about 2–3× on the numeric tasks. The fastest C programs use intrinsics or vector extensions, and GCC also auto-vectorizes. Go's compiler does not auto-vectorize and has no stable SIMD API.
-2. **Compiler effort**, about 10–30%. Go's compiler favours build speed: less inlining, no loop unrolling, lighter loop optimization than GCC/LLVM at `-O3`.
-3. **Target ISA.** C is built with `-march=ivybridge`, Go with `GOAMD64=v2`. `v3` closes about half of the remaining n-body gap.
-4. **Bounds checks.** Most are eliminated by the compiler, not all; a few percent in tight loops.
-5. **GC, on allocation-heavy code only.** This is the 9–13× on binary-trees. C uses APR pools, which free a whole tree at once. Go with a pre-allocated pointer-free arena (`programs/binarytrees/binarytrees-arena.go`) is about 12× faster than Go #2 on the same machine.
-6. **Libraries.** regex-redux and k-nucleotide in C use PCRE2-JIT and khash. Go's `regexp` guarantees linear-time matching and is slower; Go calling PCRE closes most of that gap.
-
 ## Energy
 
 `scripts/energy.py` estimates the energy change between two releases without a power meter. It uses the linear model fitted
@@ -208,34 +202,19 @@ to the raw RAPL data of van Kempen et al., [*It's Not Easy Being Green*](https:/
 On their dual-socket server the elapsed-time term dominates. CPU time alone does not predict energy there (R² ≈ 0), so the script reports
 cpu, elapsed and modelled energy side by side. The constants depend on the machine; `scripts/energy.py --refit <repo>` recomputes them.
 
-### Revisiting Pereira et al. (SLE 2017 / SCP 2021) with today's Go
+On the GCP data (`scripts/energy.py results/final/gcp-c3-4c-all-versions.json --base <old> --new go1.27.1`), geomean change to go1.27.1:
 
-`benchmarks-pereira2017.json` holds the **exact Go programs and workloads** from that study
-([greensoftwarelab/Energy-Languages](https://github.com/greensoftwarelab/Energy-Languages)), plus Go's per-benchmark
-CPU+DRAM energy and time recomputed from the authors' raw data (`Go/Go.csv`). The recomputed values reproduce the paper's Table 4 Go row:
-energy 3.245 (printed 3.23), time 2.832 (printed 2.83). The paper doesn't state its Go version. Its machine ran Ubuntu 16.10,
-the code went public 2017-08-28, and Go 1.9 shipped 2017-08-24 while 1.10 shipped February 2018, so 1.7–1.8 is most likely.
+| from | cpu | elapsed | modelled energy |
+|---|---:|---:|---:|
+| go1.23.12 | −12.3% | −11.5% | −11.5% |
+| go1.20.14 | −12.4% | −12.2% | −12.2% |
+| go1.10.8 | −13.4% | −13.9% | −13.9% |
+| go1.8.7 | −14.4% | −14.0% | −14.0% |
+| go1.6.4 | −27.6% | −28.1% | −28.1% |
 
-`scripts/pereira_compare.py results/pereira2017-programs.json --old go1.8.7` re-runs the same programs on the old and new
-Go and scales the paper's numbers. It recomputes Go's **combined** score the paper's way: the mean energy over the 8 benchmarks Go
-has data for (pidigits excluded, as in the paper; no Go regex-redux data), divided by C's 57.86 J.
-Results on the dev VM (3–5 interleaved runs; energy is a range: ∝ CPU time … ∝ elapsed time):
-
-| Go combined score (1.00 = C) | energy | time | energy rank in the paper's Table 4 |
-|---|---:|---:|---|
-| paper, Go 2017 | 3.25 | 2.83 | 14th of 27 |
-| same 2017 programs on **go1.27.1** (from go1.8.7) | **2.23–2.27** | **2.07** | ~8th, between Chapel (2.18) and Lisp (2.27) |
-| go1.27.1 + **pre-allocated arena binary-trees** | **1.56–1.58** | **1.56** | ~4th, between C++ (1.34) and Ada (1.70) |
-
-(From go1.9.7 or go1.10.8 as the baseline: 2.39–2.45 and 1.66–1.68.)
-
-binary-trees dominates that mean. It was 642 J of Go's 1,502 J total. On go1.27.1 it drops to **334–350 J** with the 2017 program,
-and to **26–30 J** with the arena, below C's 40.3 J in the paper. Every other language is held at its 2017 value. Their compilers
-improved too, so the ranks are indicative. The arena program is not Benchmarks Game eligible (hand-written pool).
-
-## Caveats (worth stating in the post)
+## Caveats
 
 * Absolute numbers depend on the machine. Only compare versions measured on the same host, ideally in the same interleaved run.
 * Shared cloud VMs are noisy, and page faults are expensive on them. reverse-complement #6 reallocates its buffer in 60 MB steps, so on a Firecracker VM it spends most of its time in the kernel (see the `sys` column). For publication, prefer a dedicated or bare-metal box, fixed CPU frequency, and no other load.
-* reverse-complement allocates ~1.6 GB. When the page cache has filled RAM, its page faults get slower (seen on the dev VM: +50% after hours of runs, at identical user time). Use `--drop-caches`.
-* Final numbers are in `results/final/` (GCP). Everything else in `results/`, and the Pereira et al. and arena sections, came from a shared 4-vCPU dev VM (3–5 runs) and is preliminary.
+* reverse-complement allocates ~1.6 GB. When the page cache has filled RAM, its page faults get slower. Use `--drop-caches`.
+* The reference data is `results/final/` (GCP). Other files in `results/` come from exploratory runs on a shared VM and are not comparable.
