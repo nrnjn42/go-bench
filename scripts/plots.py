@@ -255,7 +255,7 @@ def main():
                f"![]({os.path.relpath(png, 'results')})\n", table, ""]
     data, machine = load_sweep(a.sweep)
     if data:
-        note = "One full-size run per version (smoke sweep), not a tuned measurement."
+        note = "Initial dev-VM data: go1.2–1.9 median of 2 runs, go1.10+ 1 run (2 for fasta, revcomp, mandelbrot). Not final."
         md.append("## Across every release (smoke sweep, 1 run each)\n")
         for metric, title, ylabel, name, fmt in [
             (lambda r: r["elapsed_median"], "Elapsed time by Go release", "seconds", "elapsed-by-version", "{:.1f}"),

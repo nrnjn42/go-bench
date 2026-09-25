@@ -246,6 +246,23 @@ def sample(el, ru, rc):
             "rss_kb": ru.ru_maxrss, "minflt": ru.ru_minflt, "rc": rc}
 
 
+def drop_caches(inputs):
+    """Free the page cache (needs root) so allocation-heavy programs get fresh
+    pages without the kernel reclaiming cache first, then re-read the inputs
+    so they are served from RAM, as on the first round."""
+    subprocess.run(["sync"], check=False)
+    try:
+        with open("/proc/sys/vm/drop_caches", "w") as f:
+            f.write("1\n")
+    except OSError as e:
+        log(f"  drop-caches skipped: {e}")
+        return
+    for p in sorted(set(inputs)):
+        with open(p, "rb") as f:
+            while f.read(1 << 24):
+                pass
+
+
 def machine_info():
     info = {"python_platform": platform.platform(), "nproc": os.cpu_count()}
     try:
@@ -335,6 +352,8 @@ def cmd_run(a):
     # timed rounds, interleaved
     for i in range(a.runs):
         log(f"-- round {i + 1}/{a.runs}")
+        if a.drop_caches:
+            drop_caches([s for _, _, _, s in ready if s])
         for ver, key, argv, stdin in ready:
             st0 = steal_secs()
             rc, el, ru = execute(argv, stdin)
@@ -430,6 +449,8 @@ def main():
     r.add_argument("--no-cgo", action="store_true")
     r.add_argument("--goamd64")
     r.add_argument("--config", help="alternate benchmarks.json")
+    r.add_argument("--drop-caches", action="store_true",
+                   help="drop the page cache before every round (root); recommended on the final box")
     r.add_argument("--with-upstream", action="store_true",
                    help="also run the unmodified site program for every backported one")
     r.add_argument("--label", default=platform.node() or "host")
