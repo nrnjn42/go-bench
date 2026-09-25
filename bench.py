@@ -130,6 +130,15 @@ def build(ver, b, goamd64):
         except subprocess.CalledProcessError as e:
             return None, 0.0, f"fetching deps: {e}"
         target = "main.go"
+    # First build warms the stdlib cache (go1.10+); then change the source by a
+    # comment and time the rebuild, so build secs = compile + link of this
+    # program only, comparable across releases.
+    p = subprocess.run(["go", "build", "-o", exe, target], cwd=d, env=env,
+                       capture_output=True, text=True)
+    if p.returncode != 0:
+        return None, 0.0, p.stderr.strip()
+    with open(os.path.join(d, "main.go"), "a") as f:
+        f.write(f"\n// rebuild {time.time_ns()}\n")
     t = time.perf_counter()
     p = subprocess.run(["go", "build", "-o", exe, target], cwd=d, env=env,
                        capture_output=True, text=True)
@@ -247,7 +256,16 @@ def machine_info():
 
 
 def cmd_run(a):
-    cfg = json.load(open(os.path.join(ROOT, "benchmarks.json")))
+    cfg = json.load(open(a.config or os.path.join(ROOT, "benchmarks.json")))
+    if a.with_upstream:
+        # add the unmodified site program next to each backport, for A/B checks
+        extra = []
+        for b in cfg["benchmarks"]:
+            if b.get("upstream_src"):
+                u = dict(b, src=b["upstream_src"], id=f"{b['id']}u", variant="upstream")
+                u.pop("upstream_src")
+                extra.append(u)
+        cfg["benchmarks"] += extra
     goamd64 = a.goamd64 or cfg.get("goamd64", "v2")
     benches = cfg["benchmarks"]
     if a.only:
@@ -397,6 +415,9 @@ def main():
     r.add_argument("--only")
     r.add_argument("--no-cgo", action="store_true")
     r.add_argument("--goamd64")
+    r.add_argument("--config", help="alternate benchmarks.json")
+    r.add_argument("--with-upstream", action="store_true",
+                   help="also run the unmodified site program for every backported one")
     r.add_argument("--label", default=platform.node() or "host")
     r.add_argument("--output")
     r.set_defaults(fn=cmd_run)
