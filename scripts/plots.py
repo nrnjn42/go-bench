@@ -160,19 +160,20 @@ def change_chart(timed, base, new):
         ax.barh(y, pct, height=0.62, color=FASTER if pct < 0 else SLOWER, zorder=3)
         ax.errorbar(pct, y, xerr=noise, color=INK2, lw=1, capsize=2.5, zorder=4)
         ax.annotate(f"{pct:+.1f}%  ({a['elapsed_median']:.2f}s → {b['elapsed_median']:.2f}s)",
-                    (pct, y), xytext=(6 if pct >= 0 else -6, 0), textcoords="offset points",
+                    (pct + noise if pct >= 0 else pct - noise, y),
+                    xytext=(6 if pct >= 0 else -6, 0), textcoords="offset points",
                     ha="left" if pct >= 0 else "right", va="center", fontsize=7.8, color=INK)
     ax.axvline(0, color=INK2, lw=1, zorder=5)
     ax.set_yticks(list(ys))
     ax.set_yticklabels([LABEL.get(r[0], r[0]) for r in rows])
     ax.grid(axis="x")
     ax.grid(axis="y", visible=False)
-    lim = max([abs(r[1]) + r[2] for r in rows] + [5]) * 1.9
+    lim = max([abs(r[1]) + r[2] for r in rows] + [5]) * 2.2
     ax.set_xlim(-lim, lim)
     ax.xaxis.set_major_formatter(FuncFormatter(lambda x, _: f"{x:+.0f}%"))
     ax.tick_params(length=0)
     ax.set_xlabel("change in median elapsed time  (← faster   |   slower →)", color=INK2)
-    fig.suptitle(f"{short(base)} → {short(new)}: elapsed time per program",
+    fig.suptitle(f"{base} → {new}: elapsed time per program",
                  x=0.01, ha="left", fontsize=13, fontweight="bold", color=INK)
     fig.text(0.01, 0.9 if len(rows) > 8 else 0.87,
              f"{timed['runs']} interleaved runs per version on one machine; "
