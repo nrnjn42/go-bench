@@ -39,3 +39,13 @@
 | reverse-complement #6 | 12.52 | 12.65 | +1.0% | 1,268 | 1,579 | +24.5% |
 | spectral-norm #4 | 1.92 | 1.98 | +3.3% | 20 | 20 | +0.0% |
 
+## Across every release (smoke sweep, 1 run each)
+
+![Elapsed time by Go release](plots/elapsed-by-version.png)
+
+![CPU time by Go release](plots/cpu-by-version.png)
+
+![Peak memory by Go release](plots/memory-by-version.png)
+
+![Build time by Go release (compile + link, warm stdlib)](plots/build-by-version.png)
+

@@ -7,3 +7,24 @@
   nbody-3: built in 0.3s, output ok, full run 4.71s
   pidigits-4: built in 0.9s, output ok, full run 0.76s
   pidigits-6: built in 0.3s, output ok, full run 2.00s
+  regexredux-5: built in 0.5s, output ok, full run 3.45s
+  regexredux-3: built in 0.3s, output ok, full run 25.28s
+  revcomp-6: built in 0.3s, output ok, full run 10.10s
+  spectralnorm-4: built in 0.3s, output ok, full run 0.57s
+wrote results/smoke/go1.27.1.json
+Machine: Intel(R) Xeon(R) Processor @ 2.80GHz x4, 15 GB RAM, GOAMD64=v2, smoke mode: 1 full-size run per program, stdout hashed (2026-09-25T09:17:36+00:00)
+
+| benchmark | program | variant | median secs | min secs | ± stdev | cpu secs | (of which sys) | peak mem MB | build secs | site secs (go1.23.1) |
+|---|---|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| binarytrees | Go #2 | fastest | 11.720 | 11.720 | 0.000 | 41.73 | 1.31 | 591 | 0.3 | 14.21 |
+| fannkuchredux | Go #3 | fastest | 7.913 | 7.913 | 0.000 | 29.20 | 0.13 | 18 | 0.3 | 8.36 |
+| fasta | Go #2 | fastest | 2.051 | 2.051 | 0.000 | 4.14 | 0.27 | 18 | 0.3 | 1.27 |
+| knucleotide | Go #7 | fastest | 4.851 | 4.851 | 0.000 | 16.16 | 0.24 | 160 | 0.3 | 7.58 |
+| mandelbrot | Go #4 | fastest | 3.591 | 3.591 | 0.000 | 13.69 | 0.12 | 35 | 0.3 | 3.77 |
+| nbody | Go #3 | fastest | 4.710 | 4.710 | 0.000 | 4.72 | 0.03 | 20 | 0.3 | 6.39 |
+| pidigits | Go #4 | fastest | 0.764 | 0.764 | 0.000 | 0.84 | 0.00 | 20 | 0.9 | 0.82 |
+| pidigits | Go #6 | pure-go | 1.995 | 1.995 | 0.000 | 1.98 | 0.03 | 20 | 0.3 | 2.47 |
+| regexredux | Go #5 | fastest | 3.453 | 3.453 | 0.000 | 6.04 | 0.93 | 304 | 0.5 | 3.23 |
+| regexredux | Go #3 | pure-go | 25.278 | 25.278 | 0.000 | 64.55 | 2.48 | 385 | 0.3 | 25.15 |
+| revcomp | Go #6 | fastest | 10.099 | 10.099 | 0.000 | 11.62 | 6.45 | 1,578 | 0.3 | 1.93 |
+| spectralnorm | Go #4 | fastest | 0.568 | 0.568 | 0.000 | 1.99 | 0.01 | 20 | 0.3 | 1.43 |

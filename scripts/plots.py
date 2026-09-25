@@ -133,12 +133,12 @@ def small_multiples(data, metric, title, ylabel, name, fmt="{:.0f}", note=""):
         ax.set_xticklabels([short(vers[i]) for i in tick_idx])
     for ax in axes[::ncol]:
         ax.set_ylabel(ylabel, fontsize=8)
-    fig.suptitle(title, x=0.01, ha="left", fontsize=13, fontweight="bold", color=INK)
-    fig.text(0.01, 0.955 - 0.012 * (4 - nrow),
+    fig.suptitle(title, x=0.01, y=0.995, ha="left", fontsize=13, fontweight="bold", color=INK)
+    fig.text(0.01, 0.962,
              "Go " + short(vers[0]) + " → " + short(vers[-1]) + " (latest patch of each). "
              "Shaded: go1.23 → go1.27. " + note,
              fontsize=8.5, color=INK2, ha="left")
-    fig.tight_layout(rect=(0, 0, 1, 0.93))
+    fig.tight_layout(rect=(0, 0, 1, 0.945))
     return save(fig, name)
 
 

@@ -1,0 +1,346 @@
+{
+ "started": "2026-09-25T09:26:10+00:00",
+ "machine": {
+  "python_platform": "Linux-6.18.44-fc-v37-x86_64-with-glibc2.39",
+  "nproc": 4,
+  "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+  "mem_kb": 16481980,
+  "loadavg_start": [
+   2.4638671875,
+   2.78515625,
+   2.9541015625
+  ]
+ },
+ "label": "smoke",
+ "goamd64": "v2",
+ "runs": 0,
+ "results": {
+  "go1.21.13": {
+   "binarytrees-2": {
+    "name": "binarytrees",
+    "id": 2,
+    "variant": "fastest",
+    "site_secs": 14.21,
+    "go_version": "go version go1.21.13 linux/amd64",
+    "build_secs": 0.19,
+    "output_sha256": "341de11a51feab3d8122b4b5d6a68b038a2d14434aa9bc2372f39300bf5f48e1",
+    "status": "ok",
+    "samples": [
+     {
+      "elapsed": 13.7761,
+      "cpu": 53.7105,
+      "user": 52.596,
+      "sys": 1.1145,
+      "rss_kb": 596448,
+      "minflt": 174729,
+      "rc": 0
+     }
+    ],
+    "elapsed_min": 13.7761,
+    "elapsed_median": 13.7761,
+    "elapsed_stdev": 0.0,
+    "cpu_median": 53.7105,
+    "sys_median": 1.1145,
+    "rss_kb_max": 596448
+   },
+   "fannkuchredux-3": {
+    "name": "fannkuchredux",
+    "id": 3,
+    "variant": "fastest",
+    "site_secs": 8.36,
+    "go_version": "go version go1.21.13 linux/amd64",
+    "build_secs": 0.21,
+    "output_sha256": "4265a65135c506a68d90d6474003fb9030b7ee244a06c046bd89b3932a28ce20",
+    "status": "ok",
+    "samples": [
+     {
+      "elapsed": 7.7559,
+      "cpu": 30.689,
+      "user": 30.607,
+      "sys": 0.0821,
+      "rss_kb": 17944,
+      "minflt": 354,
+      "rc": 0
+     }
+    ],
+    "elapsed_min": 7.7559,
+    "elapsed_median": 7.7559,
+    "elapsed_stdev": 0.0,
+    "cpu_median": 30.689,
+    "sys_median": 0.0821,
+    "rss_kb_max": 17944
+   },
+   "fasta-2": {
+    "name": "fasta",
+    "id": 2,
+    "variant": "fastest",
+    "site_secs": 1.27,
+    "go_version": "go version go1.21.13 linux/amd64",
+    "build_secs": 0.21,
+    "output_sha256": "3fcf4f78104c8a65ef210fe1d469f4e473456c791225f2f1f9114f4986aa09fa",
+    "status": "ok",
+    "samples": [
+     {
+      "elapsed": 1.9772,
+      "cpu": 4.1976,
+      "user": 4.0027,
+      "sys": 0.1949,
+      "rss_kb": 17944,
+      "minflt": 2486,
+      "rc": 0
+     }
+    ],
+    "elapsed_min": 1.9772,
+    "elapsed_median": 1.9772,
+    "elapsed_stdev": 0.0,
+    "cpu_median": 4.1976,
+    "sys_median": 0.1949,
+    "rss_kb_max": 17944
+   },
+   "knucleotide-7": {
+    "name": "knucleotide",
+    "id": 7,
+    "variant": "fastest",
+    "site_secs": 7.58,
+    "go_version": "go version go1.21.13 linux/amd64",
+    "build_secs": 0.23,
+    "output_sha256": "f8c042fe770dda8f870b967605ea40ca2e353f2bdf92e89a327209dd31d445c7",
+    "status": "ok",
+    "samples": [
+     {
+      "elapsed": 6.5644,
+      "cpu": 23.8619,
+      "user": 23.3589,
+      "sys": 0.503,
+      "rss_kb": 164296,
+      "minflt": 48504,
+      "rc": 0
+     }
+    ],
+    "elapsed_min": 6.5644,
+    "elapsed_median": 6.5644,
+    "elapsed_stdev": 0.0,
+    "cpu_median": 23.8619,
+    "sys_median": 0.503,
+    "rss_kb_max": 164296
+   },
+   "mandelbrot-4": {
+    "name": "mandelbrot",
+    "id": 4,
+    "variant": "fastest",
+    "site_secs": 3.77,
+    "go_version": "go version go1.21.13 linux/amd64",
+    "build_secs": 0.23,
+    "output_sha256": "609262469ee6a0262ccd03932e557f745c9e7b997ad17835a02a0232a64807be",
+    "status": "ok",
+    "samples": [
+     {
+      "elapsed": 3.6176,
+      "cpu": 13.927,
+      "user": 13.7998,
+      "sys": 0.1272,
+      "rss_kb": 36112,
+      "minflt": 9163,
+      "rc": 0
+     }
+    ],
+    "elapsed_min": 3.6176,
+    "elapsed_median": 3.6176,
+    "elapsed_stdev": 0.0,
+    "cpu_median": 13.927,
+    "sys_median": 0.1272,
+    "rss_kb_max": 36112
+   },
+   "nbody-3": {
+    "name": "nbody",
+    "id": 3,
+    "variant": "fastest",
+    "site_secs": 6.39,
+    "go_version": "go version go1.21.13 linux/amd64",
+    "build_secs": 0.21,
+    "output_sha256": "3e6c9ef9d26cfe312a4cd8e1b81b3f671b88fbce84de543e8c23c206a942504d",
+    "status": "ok",
+    "samples": [
+     {
+      "elapsed": 4.627,
+      "cpu": 4.6202,
+      "user": 4.5963,
+      "sys": 0.024,
+      "rss_kb": 19928,
+      "minflt": 173,
+      "rc": 0
+     }
+    ],
+    "elapsed_min": 4.627,
+    "elapsed_median": 4.627,
+    "elapsed_stdev": 0.0,
+    "cpu_median": 4.6202,
+    "sys_median": 0.024,
+    "rss_kb_max": 19928
+   },
+   "pidigits-4": {
+    "name": "pidigits",
+    "id": 4,
+    "variant": "fastest",
+    "site_secs": 0.82,
+    "go_version": "go version go1.21.13 linux/amd64",
+    "build_secs": 0.89,
+    "output_sha256": "bdfa7b6c756d96492f472f97aee9cc139bee954d271eacedfd7ace5d2875f06c",
+    "status": "ok",
+    "samples": [
+     {
+      "elapsed": 0.8622,
+      "cpu": 0.9434,
+      "user": 0.9182,
+      "sys": 0.0252,
+      "rss_kb": 19928,
+      "minflt": 1721,
+      "rc": 0
+     }
+    ],
+    "elapsed_min": 0.8622,
+    "elapsed_median": 0.8622,
+    "elapsed_stdev": 0.0,
+    "cpu_median": 0.9434,
+    "sys_median": 0.0252,
+    "rss_kb_max": 19928
+   },
+   "pidigits-6": {
+    "name": "pidigits",
+    "id": 6,
+    "variant": "pure-go",
+    "site_secs": 2.47,
+    "go_version": "go version go1.21.13 linux/amd64",
+    "build_secs": 0.27,
+    "output_sha256": "bdfa7b6c756d96492f472f97aee9cc139bee954d271eacedfd7ace5d2875f06c",
+    "status": "ok",
+    "samples": [
+     {
+      "elapsed": 2.2332,
+      "cpu": 2.2441,
+      "user": 2.212,
+      "sys": 0.0321,
+      "rss_kb": 19928,
+      "minflt": 6960,
+      "rc": 0
+     }
+    ],
+    "elapsed_min": 2.2332,
+    "elapsed_median": 2.2332,
+    "elapsed_stdev": 0.0,
+    "cpu_median": 2.2441,
+    "sys_median": 0.0321,
+    "rss_kb_max": 19928
+   },
+   "regexredux-5": {
+    "name": "regexredux",
+    "id": 5,
+    "variant": "fastest",
+    "site_secs": 3.23,
+    "go_version": "go version go1.21.13 linux/amd64",
+    "build_secs": 0.53,
+    "output_sha256": "a37e6da1d43b332d5c0f4fc25b76090e9095d4c97c25f1a7186385e87706e4af",
+    "status": "ok",
+    "samples": [
+     {
+      "elapsed": 4.64,
+      "cpu": 7.5173,
+      "user": 6.3526,
+      "sys": 1.1648,
+      "rss_kb": 342824,
+      "minflt": 89075,
+      "rc": 0
+     }
+    ],
+    "elapsed_min": 4.64,
+    "elapsed_median": 4.64,
+    "elapsed_stdev": 0.0,
+    "cpu_median": 7.5173,
+    "sys_median": 1.1648,
+    "rss_kb_max": 342824
+   },
+   "regexredux-3": {
+    "name": "regexredux",
+    "id": 3,
+    "variant": "pure-go",
+    "site_secs": 25.15,
+    "go_version": "go version go1.21.13 linux/amd64",
+    "build_secs": 0.24,
+    "output_sha256": "a37e6da1d43b332d5c0f4fc25b76090e9095d4c97c25f1a7186385e87706e4af",
+    "status": "ok",
+    "samples": [
+     {
+      "elapsed": 26.0379,
+      "cpu": 66.9261,
+      "user": 64.5265,
+      "sys": 2.3996,
+      "rss_kb": 373668,
+      "minflt": 110260,
+      "rc": 0
+     }
+    ],
+    "elapsed_min": 26.0379,
+    "elapsed_median": 26.0379,
+    "elapsed_stdev": 0.0,
+    "cpu_median": 66.9261,
+    "sys_median": 2.3996,
+    "rss_kb_max": 373668
+   },
+   "revcomp-6": {
+    "name": "revcomp",
+    "id": 6,
+    "variant": "fastest",
+    "site_secs": 1.93,
+    "go_version": "go version go1.21.13 linux/amd64",
+    "build_secs": 0.22,
+    "output_sha256": "05555f3f43fe8a9b07b784a73c0ca7241dc1844f02eabf8c99fa60a404e4de08",
+    "status": "ok",
+    "samples": [
+     {
+      "elapsed": 10.4628,
+      "cpu": 13.4035,
+      "user": 5.6585,
+      "sys": 7.745,
+      "rss_kb": 1263344,
+      "minflt": 374219,
+      "rc": 0
+     }
+    ],
+    "elapsed_min": 10.4628,
+    "elapsed_median": 10.4628,
+    "elapsed_stdev": 0.0,
+    "cpu_median": 13.4035,
+    "sys_median": 7.745,
+    "rss_kb_max": 1263344
+   },
+   "spectralnorm-4": {
+    "name": "spectralnorm",
+    "id": 4,
+    "variant": "fastest",
+    "site_secs": 1.43,
+    "go_version": "go version go1.21.13 linux/amd64",
+    "build_secs": 0.23,
+    "output_sha256": "f9d5b5e3eb7657cf1bbba4cc856651864df9cd9fd9a6be9b9bc5fcbb67150deb",
+    "status": "ok",
+    "samples": [
+     {
+      "elapsed": 0.5455,
+      "cpu": 1.9993,
+      "user": 1.9792,
+      "sys": 0.0202,
+      "rss_kb": 20028,
+      "minflt": 484,
+      "rc": 0
+     }
+    ],
+    "elapsed_min": 0.5455,
+    "elapsed_median": 0.5455,
+    "elapsed_stdev": 0.0,
+    "cpu_median": 1.9993,
+    "sys_median": 0.0202,
+    "rss_kb_max": 20028
+   }
+  }
+ },
+ "finished": "2026-09-25T09:27:41+00:00"
+}
