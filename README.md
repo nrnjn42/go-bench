@@ -80,6 +80,75 @@ Runtime: one round of all 12 programs over all 26 releases is ~45 min, so `--run
 (one extra untimed full-size run per program verifies output). Recommended box: 4 dedicated physical cores,
 ≥16 GB RAM, e.g. GCP `c3-standard-8 --threads-per-core=1`.
 
+## Reproduce on Google Cloud (step by step)
+
+Anyone with a GCP project can re-run the whole study. It takes about 5 hours and costs about $2 (c3-standard-8 is about $0.40/h on demand in us-central1; check current pricing).
+
+**1. Create the VM** (from your laptop, [gcloud CLI](https://cloud.google.com/sdk/docs/install) logged in, billing enabled):
+
+```sh
+gcloud config set project <your-project>
+gcloud compute instances create go-bench \
+  --zone=us-central1-a \
+  --machine-type=c3-standard-8 --threads-per-core=1 \
+  --image-family=ubuntu-2404-lts-amd64 --image-project=ubuntu-os-cloud \
+  --boot-disk-size=30GB --boot-disk-type=pd-balanced
+```
+
+`--threads-per-core=1` turns off SMT, so Go sees 4 physical cores with no hyperthread sharing, like the Benchmarks Game quad-core box.
+Don't use Spot VMs (preemption loses the interleaved run) or shared-core `e2-*` machines (their CPU is time-sliced with other VMs, so timings are unreliable).
+Another provider works too if it gives 4 dedicated cores and ≥16 GB RAM.
+
+**2. Set up** (about 3 minutes):
+
+```sh
+gcloud compute ssh go-bench --zone=us-central1-a
+git clone https://github.com/nrnjn42/go-bench && cd go-bench
+sudo scripts/setup-ubuntu.sh --tune
+nproc                         # expect 4
+scripts/compat.py             # optional, ~10 min: all 12 programs build + pass on all 26 releases
+```
+
+**3. Run** (inside tmux so an SSH drop doesn't kill it):
+
+```sh
+tmux new -s bench
+sudo -E ./bench.py run $(bin/govm list-remote | sed 's/^/--go /') \
+  --runs 5 --drop-caches --label gcp-c3-4c --output results/final-gcp-c3-4c.json
+# detach: Ctrl-b d      reattach: tmux attach -t bench
+```
+
+The per-run output lines include `steal`; it should stay near 0. Consistently more than about 1% of a run's CPU time means the host is taking CPU away from the VM: use another zone or machine type.
+
+**4. Analyse:**
+
+```sh
+python3 scripts/plots.py --sweep results/final-gcp-c3-4c.json --timed results/final-gcp-c3-4c.json
+scripts/energy.py results/final-gcp-c3-4c.json --base go1.23.12 --new go1.27.1
+```
+
+**5. Get the results and delete the VM:**
+
+```sh
+# either push from the VM (needs your git credentials there) ...
+git add results && git commit -m "final results: gcp c3-standard-8, 4 cores" && git push
+# ... or copy them to your laptop
+gcloud compute scp --recurse go-bench:~/go-bench/results ./results-gcp --zone=us-central1-a
+
+gcloud compute instances delete go-bench --zone=us-central1-a    # about $290/month if forgotten
+```
+
+## Energy
+
+`scripts/energy.py` estimates the energy change between two releases without a power meter. It uses the linear model fitted
+to the raw RAPL data of van Kempen et al., [*It's Not Easy Being Green*](https://arxiv.org/abs/2410.05460)
+(2024; [data](https://github.com/nicovank/energy-languages); their Go was 1.23.1):
+
+    energy ≈ 1.99 J × cpu-seconds + 286.6 J × elapsed-seconds     (R² = 0.97 over 3,192 runs, 13 languages)
+
+On their dual-socket server the elapsed-time term dominates. CPU time alone does not predict energy there (R² ≈ 0), so the script reports
+cpu, elapsed and modelled energy side by side. The constants depend on the machine; `scripts/energy.py --refit <repo>` recomputes them.
+
 ## Caveats (worth stating in the post)
 
 * Absolute numbers depend on the machine. Only compare versions measured on the same host, ideally in the same interleaved run.
