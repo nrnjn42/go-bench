@@ -1,0 +1,16 @@
+{
+  "_comment": "The exact Go programs and workloads measured by Pereira et al., 'Energy Efficiency across Programming Languages' (SLE 2017) / 'Ranking programming languages by energy efficiency' (SCP 2021), from github.com/greensoftwarelab/Energy-Languages (Go/*/Makefile). paper_* = Go values printed in the paper (Table 3; the other benchmarks are only in its online appendix). Paper machine: Intel Core i5-4460 (Haswell, 4 cores), 16 GB, Ubuntu 16.10.",
+  "goamd64": "v1",
+  "benchmarks": [
+    {"name": "binarytrees",   "id": 2, "variant": "pereira2017", "src": "pereira2017/binarytrees.go-2.go",   "args": ["21"],       "check_args": ["10"],   "check_out": "binarytrees-output.txt",  "paper_joules": 636.71, "paper_ms": 16292},
+    {"name": "fannkuchredux", "id": 1, "variant": "pereira2017", "src": "pereira2017/fannkuchredux.go",      "args": ["12"],       "check_args": ["7"],    "check_out": "fannkuchredux-output.txt", "paper_joules": 318.51, "paper_ms": 8487},
+    {"name": "fasta",         "id": 3, "variant": "pereira2017", "src": "pereira2017/fasta.go-3.go",         "args": ["25000000"], "check_args": ["1000"], "check_out": "fasta-output.txt",        "paper_joules": 40.45, "paper_ms": 1838},
+    {"name": "knucleotide",   "id": 6, "variant": "pereira2017", "src": "pereira2017/knucleotide.go-6.go",   "args": ["0"], "stdin": "fasta:25000000", "check_args": ["0"], "check_stdin": "knucleotide-input.txt", "check_out": "knucleotide-output.txt"},
+    {"name": "mandelbrot",    "id": 3, "variant": "pereira2017", "src": "pereira2017/mandelbrot.go-3.go",    "args": ["16000"],    "check_args": ["200"],  "check_out": "mandelbrot-output.pbm"},
+    {"name": "nbody",         "id": 1, "variant": "pereira2017", "src": "pereira2017/nbody.go",              "args": ["50000000"], "check_args": ["1000"], "check_out": "nbody-output.txt"},
+    {"name": "pidigits",      "id": 3, "variant": "pereira2017", "src": "pereira2017/pidigits.go-3.go",      "args": ["10000"],    "check_args": ["30"],   "check_out": "pidigits-output.txt", "cgo": "libgmp"},
+    {"name": "regexredux",    "id": 2, "variant": "pereira2017", "src": "pereira2017/regexredux.go-2.compat.go", "upstream_src": "pereira2017/regexredux.go-2.go",    "args": ["0"], "stdin": "fasta:5000000",  "check_args": ["0"], "check_stdin": "regexredux-input.txt", "check_out": "regexredux-output.txt", "cgo": "libpcre", "require": {"github.com/GRbit/go-pcre": "v1.0.0"}},
+    {"name": "revcomp",       "id": 6, "variant": "pereira2017", "src": "pereira2017/revcomp.go-6.go",       "args": ["0"], "stdin": "fasta:25000000", "check_args": ["0"], "check_stdin": "revcomp-input.txt", "check_out": "revcomp-output.txt"},
+    {"name": "spectralnorm",  "id": 4, "variant": "pereira2017", "src": "pereira2017/spectralnorm.go-4.go",  "args": ["5500"],     "check_args": ["100"],  "check_out": "spectralnorm-output.txt"}
+  ]
+}
