@@ -6,10 +6,21 @@ and re-measure them for the latest patch of every Go minor release, newest first
 (go1.27.1, go1.26.8, go1.25.14, …), on one machine, with one harness, so the numbers
 compare cleanly across releases.
 
-> **Summary** (GCP, 4 dedicated cores, 5 interleaved runs, 0 steal): go1.27.1 is 11.5% faster than go1.23.12 and about 41% faster
-> than go1.2.2 (geomean elapsed across 12 programs).
+## TL;DR
 
-## Final results (GCP, 2026-09-25)
+- **Setup:** the fastest Benchmarks Game Go program for each of 10 tasks (plus pure-Go variants of pidigits and regex-redux), built from the
+  same source on all 26 releases, go1.2.2 → go1.27.1. Measured on GCP with 4 dedicated cores, 5 interleaved runs, 0 s hypervisor steal;
+  output is byte-identical on every release.
+- **go1.27.1 vs go1.23.12: 11.5% faster** (geomean elapsed) and 12.3% less CPU. The biggest changes are k-nucleotide −57.5%,
+  binary-trees −30.7% and pidigits (pure Go) −15.9%. The numeric programs (n-body, mandelbrot, spectral-norm, fasta) are within ±1%.
+- **Across all releases, go1.27.1 is about 41% faster than go1.2.2.** The largest steps are at go1.5–go1.7 and go1.24–go1.27;
+  from go1.8 to go1.23 the geomean changed by about 3%.
+- **Against C:** in 5 of the 10 tasks the fastest C program uses hand-written SIMD intrinsics. Against the fastest scalar C program, Go is
+  0.93–1.28× on the CPU-bound tasks. The other 5 fastest C programs use C libraries (khash, APR pools, GMP, PCRE2).
+- **Reproducible:** about 5 hours and about $2 on one GCP VM; step-by-step instructions are [below](#reproduce-on-google-cloud-step-by-step).
+  With pre-allocated nodes (not Benchmarks Game eligible), binary-trees runs about 10× faster than Go #2 ([note](#note-binary-trees-with-pre-allocated-nodes)).
+
+## Detailed results (GCP, 2026-09-25)
 
 GCP `c3-standard-8 --threads-per-core=1`: 4 physical cores (Xeon Platinum 8481C), 32 GB RAM, Ubuntu 24.04.
 26 releases (go1.2.2 → go1.27.1) × 12 programs, 5 interleaved runs each, `--drop-caches`, `GOAMD64=v2`.
