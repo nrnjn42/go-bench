@@ -1,0 +1,30 @@
+== go version go1.27.1 linux/amd64
+  binarytrees-2: built in 0.3s, output ok, full run 12.13s
+  fannkuchredux-3: built in 0.4s, output ok, full run 7.60s
+  fasta-2: built in 0.3s, output ok, full run 2.00s
+  knucleotide-7: built in 0.3s, output ok, full run 4.53s
+  mandelbrot-4: built in 0.3s, output ok, full run 3.73s
+  nbody-3: built in 0.2s, output ok, full run 4.75s
+  pidigits-4: built in 0.9s, output ok, full run 0.81s
+  pidigits-6: built in 0.3s, output ok, full run 1.93s
+  regexredux-5: built in 0.6s, output ok, full run 3.50s
+  regexredux-3: built in 0.3s, output ok, full run 24.75s
+  revcomp-6: built in 0.3s, output ok, full run 17.21s
+  spectralnorm-4: built in 0.3s, output ok, full run 0.71s
+wrote results/smoke/go1.27.1.json
+Machine: Intel(R) Xeon(R) Processor @ 2.80GHz x4, 15 GB RAM, GOAMD64=v2, smoke mode: 1 full-size run per program, stdout hashed (2026-09-25T08:25:20+00:00)
+
+| benchmark | program | variant | median secs | min secs | ± stdev | cpu secs | (of which sys) | peak mem MB | build secs | site secs (go1.23.1) |
+|---|---|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| binarytrees | Go #2 | fastest | 12.126 | 12.126 | 0.000 | 45.38 | 3.72 | 532 | 0.2 | 14.21 |
+| fannkuchredux | Go #3 | fastest | 7.603 | 7.603 | 0.000 | 29.15 | 0.11 | 18 | 0.4 | 8.36 |
+| fasta | Go #2 | fastest | 1.996 | 1.996 | 0.000 | 4.10 | 0.22 | 18 | 0.3 | 1.27 |
+| knucleotide | Go #7 | fastest | 4.529 | 4.529 | 0.000 | 15.80 | 0.24 | 160 | 0.3 | 7.58 |
+| mandelbrot | Go #4 | fastest | 3.734 | 3.734 | 0.000 | 13.92 | 0.11 | 35 | 0.3 | 3.77 |
+| nbody | Go #3 | fastest | 4.748 | 4.748 | 0.000 | 4.71 | 0.02 | 19 | 0.2 | 6.39 |
+| pidigits | Go #4 | fastest | 0.810 | 0.810 | 0.000 | 0.86 | 0.02 | 19 | 0.9 | 0.82 |
+| pidigits | Go #6 | pure-go | 1.935 | 1.935 | 0.000 | 1.91 | 0.03 | 19 | 0.3 | 2.47 |
+| regexredux | Go #5 | fastest | 3.501 | 3.501 | 0.000 | 6.02 | 0.80 | 312 | 0.6 | 3.23 |
+| regexredux | Go #3 | pure-go | 24.749 | 24.749 | 0.000 | 60.88 | 1.94 | 383 | 0.3 | 25.15 |
+| revcomp | Go #6 | fastest | 17.213 | 17.213 | 0.000 | 21.37 | 14.68 | 1,573 | 0.2 | 1.93 |
+| spectralnorm | Go #4 | fastest | 0.708 | 0.708 | 0.000 | 2.27 | 0.01 | 19 | 0.3 | 1.43 |
