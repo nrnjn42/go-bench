@@ -1,0 +1,9 @@
+== go version go1.27.1 linux/amd64
+  binarytrees-2: built in 0.3s, output ok, full run 11.72s
+  fannkuchredux-3: built in 0.3s, output ok, full run 7.91s
+  fasta-2: built in 0.3s, output ok, full run 2.05s
+  knucleotide-7: built in 0.3s, output ok, full run 4.85s
+  mandelbrot-4: built in 0.3s, output ok, full run 3.59s
+  nbody-3: built in 0.3s, output ok, full run 4.71s
+  pidigits-4: built in 0.9s, output ok, full run 0.76s
+  pidigits-6: built in 0.3s, output ok, full run 2.00s
