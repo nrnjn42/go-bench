@@ -6,6 +6,38 @@ and re-measure them for the latest patch of every Go minor release, newest first
 (go1.27.1, go1.26.8, go1.25.14, …), on one machine, with one harness, so the numbers
 compare cleanly for a blog post on how Go performance has changed.
 
+## Final results (GCP, 2026-09-25)
+
+GCP `c3-standard-8 --threads-per-core=1`: 4 physical cores (Xeon Platinum 8481C), 32 GB RAM, Ubuntu 24.04.
+26 releases (go1.2.2 → go1.27.1) × 12 programs, 5 interleaved runs each, `--drop-caches`, `GOAMD64=v2`.
+1,560 timed runs over 3 h with **0 s hypervisor steal**; median run-to-run variation 0.29%. Every program produced
+byte-identical full-size output on every release. Raw data: `results/final/gcp-c3-4c-all-versions.json`.
+Report and charts: [`results/final/summary.md`](results/final/summary.md).
+
+**go1.23.12 → go1.27.1: 11.5% faster** (geomean elapsed), 12.3% less CPU, modelled energy −11.5%.
+
+| program | 1.23 → 1.27 elapsed | notes |
+|---|---:|---|
+| k-nucleotide | **−57.5%** | Go 1.24 map rewrite ("Swiss tables") |
+| binary-trees | **−30.7%** | GC and allocator; −14% in 1.27 alone |
+| pidigits (pure Go) | **−15.9%** | `math/big`, in 1.25 |
+| regex-redux (PCRE) | −7.1% | cheaper cgo calls, in 1.26 |
+| regex-redux (pure Go), fannkuch-redux | −2% | |
+| n-body, mandelbrot, fasta, spectral-norm, pidigits (GMP) | ±1% | numeric code has been flat since go1.7 |
+| reverse-complement | +3.1% | peak memory +29% |
+
+**Whole history** (geomean elapsed relative to go1.27.1; 1.00 = as fast as 1.27):
+
+| go1.2 | 1.4 | 1.5 | 1.6 | 1.7 | 1.8 | 1.10 | 1.13 | 1.16 | 1.20 | 1.23 | 1.24 | 1.25 | 1.26 | 1.27 |
+|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| 1.69 | 1.83 | 1.42 | 1.39 | 1.21 | 1.16 | 1.16 | 1.12 | 1.14 | 1.14 | 1.13 | 1.06 | 1.04 | 1.01 | 1.00 |
+
+Big early gains (go1.5 compiler in Go, go1.7 SSA backend), a long plateau from go1.8 to go1.23, then most of the recent gain in
+go1.24 → go1.27. Energy vs 2017-era toolchains (model below): go1.8 → 1.27 −14%, go1.9 → −15%, go1.10 → −14%.
+Build time (compile + link, warm stdlib) is flat at about 0.15 s per program, apart from the go1.5–1.6 bump after the compiler rewrite.
+
+![1.23 vs 1.27](results/final/plots/go1.23.12-vs-go1.27.1.png)
+
 ## Layout
 
 | path | what |
@@ -206,4 +238,4 @@ improved too, so the ranks are indicative. The arena program is not Benchmarks G
 * Absolute numbers depend on the machine. Only compare versions measured on the same host, ideally in the same interleaved run.
 * Shared cloud VMs are noisy, and page faults are expensive on them. reverse-complement #6 reallocates its buffer in 60 MB steps, so on a Firecracker VM it spends most of its time in the kernel (see the `sys` column). For publication, prefer a dedicated or bare-metal box, fixed CPU frequency, and no other load.
 * reverse-complement allocates ~1.6 GB. When the page cache has filled RAM, its page faults get slower (seen on the dev VM: +50% after hours of runs, at identical user time). Use `--drop-caches`.
-* The data in `results/` so far comes from a shared 4-vCPU dev VM and is preliminary. Only the 1.23→1.27 comparison used 5 interleaved runs.
+* Final numbers are in `results/final/` (GCP). Everything else in `results/`, and the Pereira et al. and arena sections, came from a shared 4-vCPU dev VM (3–5 runs) and is preliminary.

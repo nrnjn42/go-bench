@@ -91,13 +91,25 @@ def load_sweep(d):
     return data, machine
 
 
+OUT = os.path.join(ROOT, "results", "plots")
+
+
+def load_sweep_file(p):
+    j = json.load(open(p))
+    data = {}
+    for ver, res in j["results"].items():
+        for key, r in res.items():
+            data.setdefault(key, {})[ver] = r
+    return data, j["machine"]
+
+
 def save(fig, name):
-    out = os.path.join(ROOT, "results", "plots")
+    out = OUT
     os.makedirs(out, exist_ok=True)
     for ext in ("png", "svg"):
         fig.savefig(os.path.join(out, f"{name}.{ext}"), dpi=160, bbox_inches="tight")
     plt.close(fig)
-    return os.path.join("results", "plots", f"{name}.png")
+    return os.path.join(out, f"{name}.png")
 
 
 def small_multiples(data, metric, title, ylabel, name, fmt="{:.0f}", note=""):
@@ -243,19 +255,32 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--sweep", default=os.path.join(ROOT, "results", "smoke"))
     ap.add_argument("--timed", default=os.path.join(ROOT, "results", "timed-go1.23-go1.27.json"))
+    ap.add_argument("--base", help="first version of the timed comparison (default: oldest in --timed)")
+    ap.add_argument("--new", help="last version of the timed comparison (default: newest)")
+    ap.add_argument("--out", help="output directory (plots/ and summary.md go here)")
+    ap.add_argument("--note", default="Initial dev-VM data: go1.2–1.9 median of 2 runs, go1.10+ 1 run "
+                                      "(2 for fasta, revcomp, mandelbrot). Not final.")
     a = ap.parse_args()
+    global OUT
+    outdir = a.out or os.path.join(ROOT, "results")
+    OUT = os.path.join(outdir, "plots")
     style()
     md = ["# Results\n"]
     if os.path.exists(a.timed):
         timed = json.load(open(a.timed))
-        vers = sorted(timed["results"], key=vkey)
+        allv = sorted(timed["results"], key=vkey)
+        lo = allv.index(a.base) if a.base else 0
+        hi = allv.index(a.new) if a.new else len(allv) - 1
+        keep = allv[lo:hi + 1]
+        timed = dict(timed, results={v: timed["results"][v] for v in keep})
+        vers = keep
         png, _ = change_chart(timed, vers[0], vers[-1])
         table, _ = summary_timed(timed)
         md += [f"## {short(vers[0])} vs {short(vers[-1])} (same machine, interleaved)\n",
-               f"![]({os.path.relpath(png, 'results')})\n", table, ""]
-    data, machine = load_sweep(a.sweep)
+               f"![]({os.path.relpath(png, outdir)})\n", table, ""]
+    data, machine = load_sweep(a.sweep) if os.path.isdir(a.sweep) else load_sweep_file(a.sweep)
     if data:
-        note = "Initial dev-VM data: go1.2–1.9 median of 2 runs, go1.10+ 1 run (2 for fasta, revcomp, mandelbrot). Not final."
+        note = a.note
         md.append("## Across every release (smoke sweep, 1 run each)\n")
         for metric, title, ylabel, name, fmt in [
             (lambda r: r["elapsed_median"], "Elapsed time by Go release", "seconds", "elapsed-by-version", "{:.1f}"),
@@ -265,8 +290,8 @@ def main():
              "seconds", "build-by-version", "{:.2f}"),
         ]:
             png = small_multiples(data, metric, title, ylabel, name, fmt, note)
-            md.append(f"![{title}]({os.path.relpath(png, 'results')})\n")
-    with open(os.path.join(ROOT, "results", "summary.md"), "w") as f:
+            md.append(f"![{title}]({os.path.relpath(png, outdir)})\n")
+    with open(os.path.join(outdir, "summary.md"), "w") as f:
         f.write("\n".join(md) + "\n")
     print("\n".join(md))
 
