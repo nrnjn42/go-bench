@@ -95,7 +95,7 @@ For pidigits and regex-redux the winner calls C (GMP or PCRE), so the fastest **
 
 Source: the site's own repository, via a mirror
 ([gitlab.com/hugefiver/benchmarksgame](https://gitlab.com/hugefiver/benchmarksgame) → `public/download/benchmarksgame-sourcecode.zip`,
-measurements in `public/data/data.csv`). The Debian-hosted site itself was unreachable from the build sandbox.
+measurements in `public/data/data.csv`).
 
 ## Same source on every release
 
@@ -190,6 +190,24 @@ gcloud compute scp --recurse go-bench:~/go-bench/results ./results-gcp --zone=us
 
 gcloud compute instances delete go-bench --zone=us-central1-a    # about $290/month if forgotten
 ```
+
+## Why the fastest C programs are faster
+
+The gap on the Benchmarks Game is mostly about how the C programs are written, not zeroing or other runtime overhead.
+Go zeroes memory when it allocates, not after use, and the CPU-bound programs barely allocate in their hot loops.
+
+* **Hand-written SIMD.** The fastest C program is starred on the site's leaderboard ("possible hand-written vector
+  instructions") in 5 of the 10 tasks, and its source uses x86 intrinsics: n-body #9 and spectral-norm #6 use AVX
+  (`__m256d`, 4 doubles per instruction), mandelbrot #6 uses SSE2 (`__m128d`), and fannkuch-redux #6 and reverse-complement #7 use
+  SSSE3/SSE4.1 byte shuffles (`_mm_shuffle_epi8`). Go's compiler does not auto-vectorize and Go has no stable SIMD API.
+* **Against the fastest scalar C program**, from the site's data (go1.23.1), Go is close: n-body 1.28×, spectral-norm 1.00×,
+  mandelbrot 0.93×, fannkuch-redux 1.15× (against 3.0×, 3.6×, 2.9× and 3.9× versus the SIMD programs).
+* **Libraries and memory management.** The other five fastest C programs are unstarred but call C libraries: khash
+  (k-nucleotide), APR memory pools (binary-trees, which frees whole trees at once and never pays for GC), GMP (pidigits) and
+  PCRE2 (regex-redux).
+* **Build settings.** C is compiled with GCC `-O3 -march=<cpu>`: more aggressive inlining and loop optimization, plus the host's newest
+  instructions. Go is built with its default fast-compiling toolchain at `GOAMD64=v2`, and keeps slice bounds checks where it
+  cannot prove them unnecessary.
 
 ## Energy
 
