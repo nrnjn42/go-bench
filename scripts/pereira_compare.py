@@ -35,9 +35,11 @@ def main():
     ap.add_argument("results")
     ap.add_argument("--old", required=True)
     ap.add_argument("--new", default="go1.27.1")
+    ap.add_argument("--arena", default=os.path.join(ROOT, "results", "binarytrees-arena.json"),
+                    help="results with binarytrees-p2017 and binarytrees-arena on --new")
     a = ap.parse_args()
-    cfg = {f"{b['name']}-{b['id']}": b for b in
-           json.load(open(os.path.join(ROOT, "benchmarks-pereira2017.json")))["benchmarks"]}
+    full = json.load(open(os.path.join(ROOT, "benchmarks-pereira2017.json")))
+    cfg = {f"{b['name']}-{b['id']}": b for b in full["benchmarks"]}
     res = json.load(open(a.results))["results"]
     old, new = res[a.old], res[a.new]
     print(f"### Pereira et al. Go programs: {a.old} → {a.new}\n")
@@ -70,6 +72,46 @@ def main():
     print(f"| energy | {PAPER_GO['energy']:.2f} | {PAPER_GO['energy'] * elo:.2f}–{PAPER_GO['energy'] * ehi:.2f} |")
     print(f"| time | {PAPER_GO['time']:.2f} | {PAPER_GO['time'] * T:.2f} |")
     print(f"| memory | {PAPER_GO['memory']:.2f} | {PAPER_GO['memory'] * M:.2f} |")
+
+    # Combined score recomputed the paper's way: arithmetic mean of per-benchmark
+    # energy (and time) over the benchmarks in its global table, divided by C's mean.
+    base = full["paper_base"]
+    excl = set(base["excluded_from_global"])
+    ratios = {}
+    for key, b in cfg.items():
+        o, n = old.get(key), new.get(key)
+        if b["name"] in excl or "paper_joules" not in b or not (o and n):
+            continue
+        ratios[key] = (n["cpu_median"] / o["cpu_median"], n["elapsed_median"] / o["elapsed_median"])
+    arena = None
+    if os.path.exists(a.arena):
+        ar = json.load(open(a.arena))["results"].get(a.new, {})
+        if "binarytrees-arena" in ar and "binarytrees-p2017" in ar:
+            # arena@new relative to the 2017 program@new, chained to the 2017 program@old
+            c0, t0 = ratios["binarytrees-2"]
+            arena = (c0 * ar["binarytrees-arena"]["cpu_median"] / ar["binarytrees-p2017"]["cpu_median"],
+                     t0 * ar["binarytrees-arena"]["elapsed_median"] / ar["binarytrees-p2017"]["elapsed_median"])
+
+    def combined(rs):
+        n = len(rs)
+        e = [sum(cfg[k]["paper_joules"] * r[i] for k, r in rs.items()) / n / base["c_energy_mean_j"] for i in (0, 1)]
+        t = sum(cfg[k]["paper_ms"] * r[1] for k, r in rs.items()) / n / base["c_time_mean_ms"]
+        return min(e), max(e), t
+
+    one = {k: (1.0, 1.0) for k in ratios}
+    rows = [("paper, 2017 (recomputed from raw data)", combined(one)),
+            (f"same 2017 programs on {a.new}", combined(ratios))]
+    if arena:
+        rows.append((f"{a.new} + pre-allocated arena binary-trees", combined(dict(ratios, **{"binarytrees-2": arena}))))
+        bt = cfg["binarytrees-2"]
+        print(f"\nbinary-trees energy: paper {bt['paper_joules']:.0f} J → {a.new} "
+              f"{bt['paper_joules'] * min(ratios['binarytrees-2']):.0f}–{bt['paper_joules'] * max(ratios['binarytrees-2']):.0f} J"
+              f" → arena {bt['paper_joules'] * min(arena):.0f}–{bt['paper_joules'] * max(arena):.0f} J")
+    print(f"\n### Go combined score, paper method (mean of {len(ratios)} benchmarks ÷ C mean; 1.00 = C)\n")
+    print("| scenario | energy | time |\n|---|---:|---:|")
+    for name, (elo, ehi, t) in rows:
+        e = f"{elo:.2f}" if abs(ehi - elo) < 0.005 else f"{elo:.2f}–{ehi:.2f}"
+        print(f"| {name} | {e} | {t:.2f} |")
 
 
 if __name__ == "__main__":
