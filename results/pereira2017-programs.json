@@ -1,0 +1,2430 @@
+{
+ "started": "2026-09-25T11:46:55+00:00",
+ "machine": {
+  "python_platform": "Linux-6.18.44-fc-v37-x86_64-with-glibc2.39",
+  "nproc": 4,
+  "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+  "mem_kb": 16481980,
+  "loadavg_start": [
+   0.43701171875,
+   0.234375,
+   0.296875
+  ]
+ },
+ "label": "pereira2017-devvm",
+ "goamd64": "v1",
+ "runs": 3,
+ "results": {
+  "go1.7.6": {
+   "binarytrees-2": {
+    "name": "binarytrees",
+    "id": 2,
+    "variant": "pereira2017",
+    "site_secs": null,
+    "go_version": "go version go1.7.6 linux/amd64",
+    "build_secs": 0.25,
+    "output_sha256": "341de11a51feab3d8122b4b5d6a68b038a2d14434aa9bc2372f39300bf5f48e1",
+    "status": "ok",
+    "samples": [
+     {
+      "elapsed": 21.411,
+      "cpu": 78.9705,
+      "user": 77.3767,
+      "sys": 1.5939,
+      "rss_kb": 280092,
+      "minflt": 100178,
+      "rc": 0,
+      "steal": 0.84
+     },
+     {
+      "elapsed": 22.494,
+      "cpu": 81.6534,
+      "user": 79.8799,
+      "sys": 1.7735,
+      "rss_kb": 279056,
+      "minflt": 100120,
+      "rc": 0,
+      "steal": 1.36
+     },
+     {
+      "elapsed": 21.53,
+      "cpu": 79.0064,
+      "user": 77.254,
+      "sys": 1.7524,
+      "rss_kb": 279000,
+      "minflt": 100334,
+      "rc": 0,
+      "steal": 0.98
+     }
+    ],
+    "elapsed_min": 21.411,
+    "elapsed_median": 21.53,
+    "elapsed_stdev": 0.5939059970511599,
+    "cpu_median": 79.0064,
+    "sys_median": 1.7524,
+    "rss_kb_max": 280092
+   },
+   "fannkuchredux-1": {
+    "name": "fannkuchredux",
+    "id": 1,
+    "variant": "pereira2017",
+    "site_secs": null,
+    "go_version": "go version go1.7.6 linux/amd64",
+    "build_secs": 0.23,
+    "output_sha256": "4265a65135c506a68d90d6474003fb9030b7ee244a06c046bd89b3932a28ce20",
+    "status": "ok",
+    "samples": [
+     {
+      "elapsed": 9.2044,
+      "cpu": 36.1551,
+      "user": 36.0977,
+      "sys": 0.0574,
+      "rss_kb": 34720,
+      "minflt": 199,
+      "rc": 0,
+      "steal": 0.27
+     },
+     {
+      "elapsed": 9.2852,
+      "cpu": 36.3575,
+      "user": 36.2977,
+      "sys": 0.0598,
+      "rss_kb": 34720,
+      "minflt": 203,
+      "rc": 0,
+      "steal": 0.34
+     },
+     {
+      "elapsed": 9.2561,
+      "cpu": 36.2602,
+      "user": 36.179,
+      "sys": 0.0812,
+      "rss_kb": 34720,
+      "minflt": 206,
+      "rc": 0,
+      "steal": 0.39
+     }
+    ],
+    "elapsed_min": 9.2044,
+    "elapsed_median": 9.2561,
+    "elapsed_stdev": 0.04092338369848387,
+    "cpu_median": 36.2602,
+    "sys_median": 0.0598,
+    "rss_kb_max": 34720
+   },
+   "fasta-3": {
+    "name": "fasta",
+    "id": 3,
+    "variant": "pereira2017",
+    "site_secs": null,
+    "go_version": "go version go1.7.6 linux/amd64",
+    "build_secs": 0.28,
+    "output_sha256": "3fcf4f78104c8a65ef210fe1d469f4e473456c791225f2f1f9114f4986aa09fa",
+    "status": "ok",
+    "samples": [
+     {
+      "elapsed": 1.4233,
+      "cpu": 4.4244,
+      "user": 4.3161,
+      "sys": 0.1083,
+      "rss_kb": 34720,
+      "minflt": 739,
+      "rc": 0,
+      "steal": 0.08
+     },
+     {
+      "elapsed": 1.4071,
+      "cpu": 4.3475,
+      "user": 4.2492,
+      "sys": 0.0984,
+      "rss_kb": 34720,
+      "minflt": 712,
+      "rc": 0,
+      "steal": 0.08
+     },
+     {
+      "elapsed": 1.5202,
+      "cpu": 4.5023,
+      "user": 4.3928,
+      "sys": 0.1095,
+      "rss_kb": 34720,
+      "minflt": 690,
+      "rc": 0,
+      "steal": 0.13
+     }
+    ],
+    "elapsed_min": 1.4071,
+    "elapsed_median": 1.4233,
+    "elapsed_stdev": 0.0611605264856345,
+    "cpu_median": 4.4244,
+    "sys_median": 0.1083,
+    "rss_kb_max": 34720
+   },
+   "knucleotide-6": {
+    "name": "knucleotide",
+    "id": 6,
+    "variant": "pereira2017",
+    "site_secs": null,
+    "go_version": "go version go1.7.6 linux/amd64",
+    "build_secs": 0.3,
+    "output_sha256": "f8c042fe770dda8f870b967605ea40ca2e353f2bdf92e89a327209dd31d445c7",
+    "status": "ok",
+    "samples": [
+     {
+      "elapsed": 7.8306,
+      "cpu": 27.414,
+      "user": 27.0516,
+      "sys": 0.3625,
+      "rss_kb": 147696,
+      "minflt": 40943,
+      "rc": 0,
+      "steal": 0.28
+     },
+     {
+      "elapsed": 8.1266,
+      "cpu": 28.0585,
+      "user": 27.6894,
+      "sys": 0.3691,
+      "rss_kb": 147696,
+      "minflt": 40942,
+      "rc": 0,
+      "steal": 0.37
+     },
+     {
+      "elapsed": 8.5544,
+      "cpu": 29.368,
+      "user": 28.8951,
+      "sys": 0.4729,
+      "rss_kb": 147696,
+      "minflt": 40936,
+      "rc": 0,
+      "steal": 0.67
+     }
+    ],
+    "elapsed_min": 7.8306,
+    "elapsed_median": 8.1266,
+    "elapsed_stdev": 0.36389450852318894,
+    "cpu_median": 28.0585,
+    "sys_median": 0.3691,
+    "rss_kb_max": 147696
+   },
+   "mandelbrot-3": {
+    "name": "mandelbrot",
+    "id": 3,
+    "variant": "pereira2017",
+    "site_secs": null,
+    "go_version": "go version go1.7.6 linux/amd64",
+    "build_secs": 0.26,
+    "output_sha256": "609262469ee6a0262ccd03932e557f745c9e7b997ad17835a02a0232a64807be",
+    "status": "ok",
+    "samples": [
+     {
+      "elapsed": 3.5184,
+      "cpu": 13.66,
+      "user": 13.5752,
+      "sys": 0.0848,
+      "rss_kb": 35848,
+      "minflt": 8960,
+      "rc": 0,
+      "steal": 0.19
+     },
+     {
+      "elapsed": 3.451,
+      "cpu": 13.4037,
+      "user": 13.3321,
+      "sys": 0.0716,
+      "rss_kb": 35976,
+      "minflt": 8969,
+      "rc": 0,
+      "steal": 0.16
+     },
+     {
+      "elapsed": 3.4913,
+      "cpu": 13.6233,
+      "user": 13.5445,
+      "sys": 0.0788,
+      "rss_kb": 35976,
+      "minflt": 8952,
+      "rc": 0,
+      "steal": 0.11
+     }
+    ],
+    "elapsed_min": 3.451,
+    "elapsed_median": 3.4913,
+    "elapsed_stdev": 0.03391474605536658,
+    "cpu_median": 13.6233,
+    "sys_median": 0.0788,
+    "rss_kb_max": 35976
+   },
+   "nbody-1": {
+    "name": "nbody",
+    "id": 1,
+    "variant": "pereira2017",
+    "site_secs": null,
+    "go_version": "go version go1.7.6 linux/amd64",
+    "build_secs": 0.26,
+    "output_sha256": "3e6c9ef9d26cfe312a4cd8e1b81b3f671b88fbce84de543e8c23c206a942504d",
+    "status": "ok",
+    "samples": [
+     {
+      "elapsed": 5.8551,
+      "cpu": 5.845,
+      "user": 5.845,
+      "sys": 0.0,
+      "rss_kb": 34720,
+      "minflt": 130,
+      "rc": 0,
+      "steal": 0.07
+     },
+     {
+      "elapsed": 5.6557,
+      "cpu": 5.6061,
+      "user": 5.5941,
+      "sys": 0.012,
+      "rss_kb": 34720,
+      "minflt": 129,
+      "rc": 0,
+      "steal": 0.1
+     },
+     {
+      "elapsed": 5.8379,
+      "cpu": 5.7505,
+      "user": 5.7465,
+      "sys": 0.004,
+      "rss_kb": 34720,
+      "minflt": 131,
+      "rc": 0,
+      "steal": 0.13
+     }
+    ],
+    "elapsed_min": 5.6557,
+    "elapsed_median": 5.8379,
+    "elapsed_stdev": 0.11049361972530351,
+    "cpu_median": 5.7505,
+    "sys_median": 0.004,
+    "rss_kb_max": 34720
+   },
+   "pidigits-3": {
+    "name": "pidigits",
+    "id": 3,
+    "variant": "pereira2017",
+    "site_secs": null,
+    "go_version": "go version go1.7.6 linux/amd64",
+    "build_secs": 0.67,
+    "output_sha256": "bdfa7b6c756d96492f472f97aee9cc139bee954d271eacedfd7ace5d2875f06c",
+    "status": "ok",
+    "samples": [
+     {
+      "elapsed": 0.9043,
+      "cpu": 0.8983,
+      "user": 0.8794,
+      "sys": 0.019,
+      "rss_kb": 34720,
+      "minflt": 1615,
+      "rc": 0,
+      "steal": 0.01
+     },
+     {
+      "elapsed": 0.9154,
+      "cpu": 0.8976,
+      "user": 0.8937,
+      "sys": 0.0039,
+      "rss_kb": 34720,
+      "minflt": 1613,
+      "rc": 0,
+      "steal": 0.03
+     },
+     {
+      "elapsed": 0.9231,
+      "cpu": 0.9112,
+      "user": 0.9018,
+      "sys": 0.0094,
+      "rss_kb": 34720,
+      "minflt": 1624,
+      "rc": 0,
+      "steal": 0.01
+     }
+    ],
+    "elapsed_min": 0.9043,
+    "elapsed_median": 0.9154,
+    "elapsed_stdev": 0.00945110222848815,
+    "cpu_median": 0.8983,
+    "sys_median": 0.0094,
+    "rss_kb_max": 34720
+   },
+   "regexredux-2": {
+    "name": "regexredux",
+    "id": 2,
+    "variant": "pereira2017",
+    "site_secs": null,
+    "go_version": "go version go1.7.6 linux/amd64",
+    "build_secs": 0.96,
+    "output_sha256": "a37e6da1d43b332d5c0f4fc25b76090e9095d4c97c25f1a7186385e87706e4af",
+    "status": "ok",
+    "samples": [
+     {
+      "elapsed": 12.9259,
+      "cpu": 27.4572,
+      "user": 27.0635,
+      "sys": 0.3937,
+      "rss_kb": 334108,
+      "minflt": 82963,
+      "rc": 0,
+      "steal": 0.32
+     },
+     {
+      "elapsed": 13.4035,
+      "cpu": 26.836,
+      "user": 26.402,
+      "sys": 0.4341,
+      "rss_kb": 333988,
+      "minflt": 82963,
+      "rc": 0,
+      "steal": 0.35
+     },
+     {
+      "elapsed": 13.553,
+      "cpu": 27.4148,
+      "user": 26.885,
+      "sys": 0.5298,
+      "rss_kb": 334108,
+      "minflt": 82967,
+      "rc": 0,
+      "steal": 0.31
+     }
+    ],
+    "elapsed_min": 12.9259,
+    "elapsed_median": 13.4035,
+    "elapsed_stdev": 0.32754297936810267,
+    "cpu_median": 27.4148,
+    "sys_median": 0.4341,
+    "rss_kb_max": 334108
+   },
+   "revcomp-6": {
+    "name": "revcomp",
+    "id": 6,
+    "variant": "pereira2017",
+    "site_secs": null,
+    "go_version": "go version go1.7.6 linux/amd64",
+    "build_secs": 0.19,
+    "output_sha256": "e5730d4fd55c464f276e5c6062c80f46e0a735281de15d8c957e2731a9baf70e",
+    "status": "ok",
+    "samples": [
+     {
+      "elapsed": 0.422,
+      "cpu": 0.6517,
+      "user": 0.5143,
+      "sys": 0.1375,
+      "rss_kb": 135160,
+      "minflt": 33693,
+      "rc": 0,
+      "steal": 0.03
+     },
+     {
+      "elapsed": 0.4393,
+      "cpu": 0.665,
+      "user": 0.5066,
+      "sys": 0.1583,
+      "rss_kb": 135032,
+      "minflt": 33696,
+      "rc": 0,
+      "steal": 0.05
+     },
+     {
+      "elapsed": 0.4671,
+      "cpu": 0.7025,
+      "user": 0.5054,
+      "sys": 0.1971,
+      "rss_kb": 135032,
+      "minflt": 33705,
+      "rc": 0,
+      "steal": 0.03
+     }
+    ],
+    "elapsed_min": 0.422,
+    "elapsed_median": 0.4393,
+    "elapsed_stdev": 0.022752802025245166,
+    "cpu_median": 0.665,
+    "sys_median": 0.1583,
+    "rss_kb_max": 135160
+   },
+   "spectralnorm-4": {
+    "name": "spectralnorm",
+    "id": 4,
+    "variant": "pereira2017",
+    "site_secs": null,
+    "go_version": "go version go1.7.6 linux/amd64",
+    "build_secs": 0.24,
+    "output_sha256": "f9d5b5e3eb7657cf1bbba4cc856651864df9cd9fd9a6be9b9bc5fcbb67150deb",
+    "status": "ok",
+    "samples": [
+     {
+      "elapsed": 0.5561,
+      "cpu": 1.903,
+      "user": 1.8991,
+      "sys": 0.0039,
+      "rss_kb": 34720,
+      "minflt": 416,
+      "rc": 0,
+      "steal": 0.03
+     },
+     {
+      "elapsed": 0.5793,
+      "cpu": 1.927,
+      "user": 1.9026,
+      "sys": 0.0244,
+      "rss_kb": 34720,
+      "minflt": 427,
+      "rc": 0,
+      "steal": 0.05
+     },
+     {
+      "elapsed": 0.6262,
+      "cpu": 2.0442,
+      "user": 2.0202,
+      "sys": 0.024,
+      "rss_kb": 34720,
+      "minflt": 433,
+      "rc": 0,
+      "steal": 0.04
+     }
+    ],
+    "elapsed_min": 0.5561,
+    "elapsed_median": 0.5793,
+    "elapsed_stdev": 0.03571148274715008,
+    "cpu_median": 1.927,
+    "sys_median": 0.024,
+    "rss_kb_max": 34720
+   }
+  },
+  "go1.8.7": {
+   "binarytrees-2": {
+    "name": "binarytrees",
+    "id": 2,
+    "variant": "pereira2017",
+    "site_secs": null,
+    "go_version": "go version go1.8.7 linux/amd64",
+    "build_secs": 0.23,
+    "output_sha256": "341de11a51feab3d8122b4b5d6a68b038a2d14434aa9bc2372f39300bf5f48e1",
+    "status": "ok",
+    "samples": [
+     {
+      "elapsed": 22.98,
+      "cpu": 84.1226,
+      "user": 83.3512,
+      "sys": 0.7714,
+      "rss_kb": 276716,
+      "minflt": 74637,
+      "rc": 0,
+      "steal": 1.16
+     },
+     {
+      "elapsed": 23.2159,
+      "cpu": 84.3574,
+      "user": 83.4437,
+      "sys": 0.9137,
+      "rss_kb": 274088,
+      "minflt": 75037,
+      "rc": 0,
+      "steal": 1.48
+     },
+     {
+      "elapsed": 22.8977,
+      "cpu": 82.9324,
+      "user": 82.1537,
+      "sys": 0.7787,
+      "rss_kb": 274392,
+      "minflt": 73757,
+      "rc": 0,
+      "steal": 1.08
+     }
+    ],
+    "elapsed_min": 22.8977,
+    "elapsed_median": 22.98,
+    "elapsed_stdev": 0.16516322229842867,
+    "cpu_median": 84.1226,
+    "sys_median": 0.7787,
+    "rss_kb_max": 276716
+   },
+   "fannkuchredux-1": {
+    "name": "fannkuchredux",
+    "id": 1,
+    "variant": "pereira2017",
+    "site_secs": null,
+    "go_version": "go version go1.8.7 linux/amd64",
+    "build_secs": 0.24,
+    "output_sha256": "4265a65135c506a68d90d6474003fb9030b7ee244a06c046bd89b3932a28ce20",
+    "status": "ok",
+    "samples": [
+     {
+      "elapsed": 8.9907,
+      "cpu": 35.3256,
+      "user": 35.2418,
+      "sys": 0.0838,
+      "rss_kb": 34720,
+      "minflt": 210,
+      "rc": 0,
+      "steal": 0.25
+     },
+     {
+      "elapsed": 9.1939,
+      "cpu": 35.7615,
+      "user": 35.7097,
+      "sys": 0.0518,
+      "rss_kb": 34720,
+      "minflt": 205,
+      "rc": 0,
+      "steal": 0.56
+     },
+     {
+      "elapsed": 9.3341,
+      "cpu": 36.287,
+      "user": 36.2204,
+      "sys": 0.0666,
+      "rss_kb": 34720,
+      "minflt": 206,
+      "rc": 0,
+      "steal": 0.67
+     }
+    ],
+    "elapsed_min": 8.9907,
+    "elapsed_median": 9.1939,
+    "elapsed_stdev": 0.17266047607950066,
+    "cpu_median": 35.7615,
+    "sys_median": 0.0666,
+    "rss_kb_max": 34720
+   },
+   "fasta-3": {
+    "name": "fasta",
+    "id": 3,
+    "variant": "pereira2017",
+    "site_secs": null,
+    "go_version": "go version go1.8.7 linux/amd64",
+    "build_secs": 0.28,
+    "output_sha256": "3fcf4f78104c8a65ef210fe1d469f4e473456c791225f2f1f9114f4986aa09fa",
+    "status": "ok",
+    "samples": [
+     {
+      "elapsed": 1.462,
+      "cpu": 4.2431,
+      "user": 4.1457,
+      "sys": 0.0975,
+      "rss_kb": 34720,
+      "minflt": 695,
+      "rc": 0,
+      "steal": 0.08
+     },
+     {
+      "elapsed": 1.6208,
+      "cpu": 4.3338,
+      "user": 4.2331,
+      "sys": 0.1007,
+      "rss_kb": 34720,
+      "minflt": 693,
+      "rc": 0,
+      "steal": 0.22
+     },
+     {
+      "elapsed": 1.5075,
+      "cpu": 4.2274,
+      "user": 4.1112,
+      "sys": 0.1162,
+      "rss_kb": 34720,
+      "minflt": 661,
+      "rc": 0,
+      "steal": 0.1
+     }
+    ],
+    "elapsed_min": 1.462,
+    "elapsed_median": 1.5075,
+    "elapsed_stdev": 0.0817767081753723,
+    "cpu_median": 4.2431,
+    "sys_median": 0.1007,
+    "rss_kb_max": 34720
+   },
+   "knucleotide-6": {
+    "name": "knucleotide",
+    "id": 6,
+    "variant": "pereira2017",
+    "site_secs": null,
+    "go_version": "go version go1.8.7 linux/amd64",
+    "build_secs": 0.27,
+    "output_sha256": "f8c042fe770dda8f870b967605ea40ca2e353f2bdf92e89a327209dd31d445c7",
+    "status": "ok",
+    "samples": [
+     {
+      "elapsed": 8.2543,
+      "cpu": 29.6177,
+      "user": 29.2637,
+      "sys": 0.354,
+      "rss_kb": 147648,
+      "minflt": 40982,
+      "rc": 0,
+      "steal": 0.44
+     },
+     {
+      "elapsed": 8.2127,
+      "cpu": 28.8879,
+      "user": 28.5195,
+      "sys": 0.3684,
+      "rss_kb": 147648,
+      "minflt": 41029,
+      "rc": 0,
+      "steal": 0.31
+     },
+     {
+      "elapsed": 8.3225,
+      "cpu": 29.1283,
+      "user": 28.7374,
+      "sys": 0.3909,
+      "rss_kb": 147960,
+      "minflt": 41041,
+      "rc": 0,
+      "steal": 0.51
+     }
+    ],
+    "elapsed_min": 8.2127,
+    "elapsed_median": 8.2543,
+    "elapsed_stdev": 0.05543440568215123,
+    "cpu_median": 29.1283,
+    "sys_median": 0.3684,
+    "rss_kb_max": 147960
+   },
+   "mandelbrot-3": {
+    "name": "mandelbrot",
+    "id": 3,
+    "variant": "pereira2017",
+    "site_secs": null,
+    "go_version": "go version go1.8.7 linux/amd64",
+    "build_secs": 0.28,
+    "output_sha256": "609262469ee6a0262ccd03932e557f745c9e7b997ad17835a02a0232a64807be",
+    "status": "ok",
+    "samples": [
+     {
+      "elapsed": 3.6217,
+      "cpu": 14.1676,
+      "user": 14.068,
+      "sys": 0.0996,
+      "rss_kb": 36112,
+      "minflt": 8988,
+      "rc": 0,
+      "steal": 0.11
+     },
+     {
+      "elapsed": 3.6537,
+      "cpu": 14.1365,
+      "user": 14.0493,
+      "sys": 0.0871,
+      "rss_kb": 35856,
+      "minflt": 8964,
+      "rc": 0,
+      "steal": 0.28
+     },
+     {
+      "elapsed": 3.6735,
+      "cpu": 14.3184,
+      "user": 14.2562,
+      "sys": 0.0622,
+      "rss_kb": 35728,
+      "minflt": 8987,
+      "rc": 0,
+      "steal": 0.15
+     }
+    ],
+    "elapsed_min": 3.6217,
+    "elapsed_median": 3.6537,
+    "elapsed_stdev": 0.026138349858652803,
+    "cpu_median": 14.1676,
+    "sys_median": 0.0871,
+    "rss_kb_max": 36112
+   },
+   "nbody-1": {
+    "name": "nbody",
+    "id": 1,
+    "variant": "pereira2017",
+    "site_secs": null,
+    "go_version": "go version go1.8.7 linux/amd64",
+    "build_secs": 0.23,
+    "output_sha256": "3e6c9ef9d26cfe312a4cd8e1b81b3f671b88fbce84de543e8c23c206a942504d",
+    "status": "ok",
+    "samples": [
+     {
+      "elapsed": 5.5511,
+      "cpu": 5.5413,
+      "user": 5.5333,
+      "sys": 0.008,
+      "rss_kb": 34720,
+      "minflt": 132,
+      "rc": 0,
+      "steal": 0.05
+     },
+     {
+      "elapsed": 5.6818,
+      "cpu": 5.5097,
+      "user": 5.5057,
+      "sys": 0.004,
+      "rss_kb": 34720,
+      "minflt": 132,
+      "rc": 0,
+      "steal": 0.21
+     },
+     {
+      "elapsed": 5.6308,
+      "cpu": 5.5832,
+      "user": 5.5792,
+      "sys": 0.004,
+      "rss_kb": 34720,
+      "minflt": 140,
+      "rc": 0,
+      "steal": 0.11
+     }
+    ],
+    "elapsed_min": 5.5511,
+    "elapsed_median": 5.6308,
+    "elapsed_stdev": 0.06587308504490537,
+    "cpu_median": 5.5413,
+    "sys_median": 0.004,
+    "rss_kb_max": 34720
+   },
+   "pidigits-3": {
+    "name": "pidigits",
+    "id": 3,
+    "variant": "pereira2017",
+    "site_secs": null,
+    "go_version": "go version go1.8.7 linux/amd64",
+    "build_secs": 0.68,
+    "output_sha256": "bdfa7b6c756d96492f472f97aee9cc139bee954d271eacedfd7ace5d2875f06c",
+    "status": "ok",
+    "samples": [
+     {
+      "elapsed": 0.8855,
+      "cpu": 0.8808,
+      "user": 0.8728,
+      "sys": 0.0079,
+      "rss_kb": 34720,
+      "minflt": 1792,
+      "rc": 0,
+      "steal": 0.0
+     },
+     {
+      "elapsed": 0.8352,
+      "cpu": 0.8343,
+      "user": 0.8263,
+      "sys": 0.008,
+      "rss_kb": 34720,
+      "minflt": 1785,
+      "rc": 0,
+      "steal": 0.01
+     },
+     {
+      "elapsed": 0.8609,
+      "cpu": 0.8523,
+      "user": 0.8245,
+      "sys": 0.0278,
+      "rss_kb": 34720,
+      "minflt": 1782,
+      "rc": 0,
+      "steal": 0.01
+     }
+    ],
+    "elapsed_min": 0.8352,
+    "elapsed_median": 0.8609,
+    "elapsed_stdev": 0.0251520045589478,
+    "cpu_median": 0.8523,
+    "sys_median": 0.008,
+    "rss_kb_max": 34720
+   },
+   "regexredux-2": {
+    "name": "regexredux",
+    "id": 2,
+    "variant": "pereira2017",
+    "site_secs": null,
+    "go_version": "go version go1.8.7 linux/amd64",
+    "build_secs": 0.91,
+    "output_sha256": "a37e6da1d43b332d5c0f4fc25b76090e9095d4c97c25f1a7186385e87706e4af",
+    "status": "ok",
+    "samples": [
+     {
+      "elapsed": 12.1748,
+      "cpu": 25.3518,
+      "user": 25.031,
+      "sys": 0.3208,
+      "rss_kb": 243716,
+      "minflt": 60334,
+      "rc": 0,
+      "steal": 0.29
+     },
+     {
+      "elapsed": 11.9614,
+      "cpu": 25.9246,
+      "user": 25.6543,
+      "sys": 0.2703,
+      "rss_kb": 243540,
+      "minflt": 60337,
+      "rc": 0,
+      "steal": 0.58
+     },
+     {
+      "elapsed": 12.7344,
+      "cpu": 26.7406,
+      "user": 26.3378,
+      "sys": 0.4028,
+      "rss_kb": 243556,
+      "minflt": 60332,
+      "rc": 0,
+      "steal": 0.68
+     }
+    ],
+    "elapsed_min": 11.9614,
+    "elapsed_median": 12.1748,
+    "elapsed_stdev": 0.39921187357091553,
+    "cpu_median": 25.9246,
+    "sys_median": 0.3208,
+    "rss_kb_max": 243716
+   },
+   "revcomp-6": {
+    "name": "revcomp",
+    "id": 6,
+    "variant": "pereira2017",
+    "site_secs": null,
+    "go_version": "go version go1.8.7 linux/amd64",
+    "build_secs": 0.2,
+    "output_sha256": "e5730d4fd55c464f276e5c6062c80f46e0a735281de15d8c957e2731a9baf70e",
+    "status": "ok",
+    "samples": [
+     {
+      "elapsed": 0.4276,
+      "cpu": 0.7532,
+      "user": 0.5984,
+      "sys": 0.1549,
+      "rss_kb": 135004,
+      "minflt": 33696,
+      "rc": 0,
+      "steal": 0.02
+     },
+     {
+      "elapsed": 0.4591,
+      "cpu": 0.8637,
+      "user": 0.6807,
+      "sys": 0.183,
+      "rss_kb": 135004,
+      "minflt": 33694,
+      "rc": 0,
+      "steal": 0.03
+     },
+     {
+      "elapsed": 0.4922,
+      "cpu": 0.8979,
+      "user": 0.6954,
+      "sys": 0.2024,
+      "rss_kb": 135132,
+      "minflt": 33691,
+      "rc": 0,
+      "steal": 0.02
+     }
+    ],
+    "elapsed_min": 0.4276,
+    "elapsed_median": 0.4591,
+    "elapsed_stdev": 0.03230330220477985,
+    "cpu_median": 0.8637,
+    "sys_median": 0.183,
+    "rss_kb_max": 135132
+   },
+   "spectralnorm-4": {
+    "name": "spectralnorm",
+    "id": 4,
+    "variant": "pereira2017",
+    "site_secs": null,
+    "go_version": "go version go1.8.7 linux/amd64",
+    "build_secs": 0.23,
+    "output_sha256": "f9d5b5e3eb7657cf1bbba4cc856651864df9cd9fd9a6be9b9bc5fcbb67150deb",
+    "status": "ok",
+    "samples": [
+     {
+      "elapsed": 0.5812,
+      "cpu": 1.8677,
+      "user": 1.8637,
+      "sys": 0.004,
+      "rss_kb": 34720,
+      "minflt": 429,
+      "rc": 0,
+      "steal": 0.05
+     },
+     {
+      "elapsed": 0.5644,
+      "cpu": 1.8836,
+      "user": 1.8677,
+      "sys": 0.0159,
+      "rss_kb": 34720,
+      "minflt": 429,
+      "rc": 0,
+      "steal": 0.06
+     },
+     {
+      "elapsed": 0.5955,
+      "cpu": 1.9613,
+      "user": 1.9493,
+      "sys": 0.012,
+      "rss_kb": 34720,
+      "minflt": 437,
+      "rc": 0,
+      "steal": 0.02
+     }
+    ],
+    "elapsed_min": 0.5644,
+    "elapsed_median": 0.5812,
+    "elapsed_stdev": 0.015566738044090471,
+    "cpu_median": 1.8836,
+    "sys_median": 0.012,
+    "rss_kb_max": 34720
+   }
+  },
+  "go1.9.7": {
+   "binarytrees-2": {
+    "name": "binarytrees",
+    "id": 2,
+    "variant": "pereira2017",
+    "site_secs": null,
+    "go_version": "go version go1.9.7 linux/amd64",
+    "build_secs": 0.31,
+    "output_sha256": "341de11a51feab3d8122b4b5d6a68b038a2d14434aa9bc2372f39300bf5f48e1",
+    "status": "ok",
+    "samples": [
+     {
+      "elapsed": 21.396,
+      "cpu": 77.3532,
+      "user": 76.278,
+      "sys": 1.0752,
+      "rss_kb": 275732,
+      "minflt": 75527,
+      "rc": 0,
+      "steal": 1.04
+     },
+     {
+      "elapsed": 21.047,
+      "cpu": 76.7802,
+      "user": 75.6896,
+      "sys": 1.0906,
+      "rss_kb": 273688,
+      "minflt": 75272,
+      "rc": 0,
+      "steal": 1.12
+     },
+     {
+      "elapsed": 20.8722,
+      "cpu": 76.6831,
+      "user": 75.5851,
+      "sys": 1.098,
+      "rss_kb": 271724,
+      "minflt": 74384,
+      "rc": 0,
+      "steal": 1.17
+     }
+    ],
+    "elapsed_min": 20.8722,
+    "elapsed_median": 21.047,
+    "elapsed_stdev": 0.26668410776297424,
+    "cpu_median": 76.7802,
+    "sys_median": 1.0906,
+    "rss_kb_max": 275732
+   },
+   "fannkuchredux-1": {
+    "name": "fannkuchredux",
+    "id": 1,
+    "variant": "pereira2017",
+    "site_secs": null,
+    "go_version": "go version go1.9.7 linux/amd64",
+    "build_secs": 0.26,
+    "output_sha256": "4265a65135c506a68d90d6474003fb9030b7ee244a06c046bd89b3932a28ce20",
+    "status": "ok",
+    "samples": [
+     {
+      "elapsed": 8.4892,
+      "cpu": 33.2751,
+      "user": 33.1913,
+      "sys": 0.0838,
+      "rss_kb": 34720,
+      "minflt": 223,
+      "rc": 0,
+      "steal": 0.29
+     },
+     {
+      "elapsed": 8.5586,
+      "cpu": 33.3981,
+      "user": 33.3131,
+      "sys": 0.085,
+      "rss_kb": 34720,
+      "minflt": 229,
+      "rc": 0,
+      "steal": 0.47
+     },
+     {
+      "elapsed": 8.5149,
+      "cpu": 33.2588,
+      "user": 33.1835,
+      "sys": 0.0753,
+      "rss_kb": 34720,
+      "minflt": 229,
+      "rc": 0,
+      "steal": 0.4
+     }
+    ],
+    "elapsed_min": 8.4892,
+    "elapsed_median": 8.5149,
+    "elapsed_stdev": 0.03508689213937298,
+    "cpu_median": 33.2751,
+    "sys_median": 0.0838,
+    "rss_kb_max": 34720
+   },
+   "fasta-3": {
+    "name": "fasta",
+    "id": 3,
+    "variant": "pereira2017",
+    "site_secs": null,
+    "go_version": "go version go1.9.7 linux/amd64",
+    "build_secs": 0.28,
+    "output_sha256": "3fcf4f78104c8a65ef210fe1d469f4e473456c791225f2f1f9114f4986aa09fa",
+    "status": "ok",
+    "samples": [
+     {
+      "elapsed": 1.4257,
+      "cpu": 3.9302,
+      "user": 3.8006,
+      "sys": 0.1297,
+      "rss_kb": 34720,
+      "minflt": 725,
+      "rc": 0,
+      "steal": 0.1
+     },
+     {
+      "elapsed": 1.4033,
+      "cpu": 3.88,
+      "user": 3.7381,
+      "sys": 0.1418,
+      "rss_kb": 34720,
+      "minflt": 723,
+      "rc": 0,
+      "steal": 0.07
+     },
+     {
+      "elapsed": 1.3823,
+      "cpu": 3.931,
+      "user": 3.7874,
+      "sys": 0.1437,
+      "rss_kb": 34720,
+      "minflt": 704,
+      "rc": 0,
+      "steal": 0.04
+     }
+    ],
+    "elapsed_min": 1.3823,
+    "elapsed_median": 1.4033,
+    "elapsed_stdev": 0.021703763114569116,
+    "cpu_median": 3.9302,
+    "sys_median": 0.1418,
+    "rss_kb_max": 34720
+   },
+   "knucleotide-6": {
+    "name": "knucleotide",
+    "id": 6,
+    "variant": "pereira2017",
+    "site_secs": null,
+    "go_version": "go version go1.9.7 linux/amd64",
+    "build_secs": 0.32,
+    "output_sha256": "f8c042fe770dda8f870b967605ea40ca2e353f2bdf92e89a327209dd31d445c7",
+    "status": "ok",
+    "samples": [
+     {
+      "elapsed": 8.2223,
+      "cpu": 27.9518,
+      "user": 27.6139,
+      "sys": 0.3379,
+      "rss_kb": 147872,
+      "minflt": 41067,
+      "rc": 0,
+      "steal": 0.34
+     },
+     {
+      "elapsed": 8.2686,
+      "cpu": 27.6761,
+      "user": 27.3958,
+      "sys": 0.2803,
+      "rss_kb": 148000,
+      "minflt": 38957,
+      "rc": 0,
+      "steal": 0.41
+     },
+     {
+      "elapsed": 9.0873,
+      "cpu": 29.8576,
+      "user": 29.4988,
+      "sys": 0.3587,
+      "rss_kb": 147556,
+      "minflt": 40750,
+      "rc": 0,
+      "steal": 0.53
+     }
+    ],
+    "elapsed_min": 8.2223,
+    "elapsed_median": 8.2686,
+    "elapsed_stdev": 0.48659332438221325,
+    "cpu_median": 27.9518,
+    "sys_median": 0.3379,
+    "rss_kb_max": 148000
+   },
+   "mandelbrot-3": {
+    "name": "mandelbrot",
+    "id": 3,
+    "variant": "pereira2017",
+    "site_secs": null,
+    "go_version": "go version go1.9.7 linux/amd64",
+    "build_secs": 0.32,
+    "output_sha256": "609262469ee6a0262ccd03932e557f745c9e7b997ad17835a02a0232a64807be",
+    "status": "ok",
+    "samples": [
+     {
+      "elapsed": 3.559,
+      "cpu": 13.8928,
+      "user": 13.8173,
+      "sys": 0.0756,
+      "rss_kb": 36016,
+      "minflt": 8969,
+      "rc": 0,
+      "steal": 0.13
+     },
+     {
+      "elapsed": 3.5673,
+      "cpu": 13.8974,
+      "user": 13.8155,
+      "sys": 0.082,
+      "rss_kb": 36144,
+      "minflt": 8984,
+      "rc": 0,
+      "steal": 0.17
+     },
+     {
+      "elapsed": 3.5905,
+      "cpu": 13.9589,
+      "user": 13.855,
+      "sys": 0.1039,
+      "rss_kb": 36144,
+      "minflt": 8955,
+      "rc": 0,
+      "steal": 0.18
+     }
+    ],
+    "elapsed_min": 3.559,
+    "elapsed_median": 3.5673,
+    "elapsed_stdev": 0.016326767387738826,
+    "cpu_median": 13.8974,
+    "sys_median": 0.082,
+    "rss_kb_max": 36144
+   },
+   "nbody-1": {
+    "name": "nbody",
+    "id": 1,
+    "variant": "pereira2017",
+    "site_secs": null,
+    "go_version": "go version go1.9.7 linux/amd64",
+    "build_secs": 0.26,
+    "output_sha256": "3e6c9ef9d26cfe312a4cd8e1b81b3f671b88fbce84de543e8c23c206a942504d",
+    "status": "ok",
+    "samples": [
+     {
+      "elapsed": 5.0936,
+      "cpu": 5.0845,
+      "user": 5.0724,
+      "sys": 0.012,
+      "rss_kb": 34720,
+      "minflt": 162,
+      "rc": 0,
+      "steal": 0.04
+     },
+     {
+      "elapsed": 5.0875,
+      "cpu": 5.0596,
+      "user": 5.0516,
+      "sys": 0.008,
+      "rss_kb": 34720,
+      "minflt": 152,
+      "rc": 0,
+      "steal": 0.06
+     },
+     {
+      "elapsed": 5.1275,
+      "cpu": 5.1063,
+      "user": 5.0943,
+      "sys": 0.012,
+      "rss_kb": 34720,
+      "minflt": 162,
+      "rc": 0,
+      "steal": 0.06
+     }
+    ],
+    "elapsed_min": 5.0875,
+    "elapsed_median": 5.0936,
+    "elapsed_stdev": 0.02155001933487147,
+    "cpu_median": 5.0845,
+    "sys_median": 0.012,
+    "rss_kb_max": 34720
+   },
+   "pidigits-3": {
+    "name": "pidigits",
+    "id": 3,
+    "variant": "pereira2017",
+    "site_secs": null,
+    "go_version": "go version go1.9.7 linux/amd64",
+    "build_secs": 0.68,
+    "output_sha256": "bdfa7b6c756d96492f472f97aee9cc139bee954d271eacedfd7ace5d2875f06c",
+    "status": "ok",
+    "samples": [
+     {
+      "elapsed": 0.8633,
+      "cpu": 0.8453,
+      "user": 0.8413,
+      "sys": 0.004,
+      "rss_kb": 34720,
+      "minflt": 1796,
+      "rc": 0,
+      "steal": 0.04
+     },
+     {
+      "elapsed": 0.8587,
+      "cpu": 0.8559,
+      "user": 0.8439,
+      "sys": 0.012,
+      "rss_kb": 34720,
+      "minflt": 1790,
+      "rc": 0,
+      "steal": 0.01
+     },
+     {
+      "elapsed": 0.8739,
+      "cpu": 0.856,
+      "user": 0.8439,
+      "sys": 0.012,
+      "rss_kb": 34720,
+      "minflt": 1797,
+      "rc": 0,
+      "steal": 0.02
+     }
+    ],
+    "elapsed_min": 0.8587,
+    "elapsed_median": 0.8633,
+    "elapsed_stdev": 0.007794870107962034,
+    "cpu_median": 0.8559,
+    "sys_median": 0.012,
+    "rss_kb_max": 34720
+   },
+   "regexredux-2": {
+    "name": "regexredux",
+    "id": 2,
+    "variant": "pereira2017",
+    "site_secs": null,
+    "go_version": "go version go1.9.7 linux/amd64",
+    "build_secs": 0.89,
+    "output_sha256": "a37e6da1d43b332d5c0f4fc25b76090e9095d4c97c25f1a7186385e87706e4af",
+    "status": "ok",
+    "samples": [
+     {
+      "elapsed": 11.9598,
+      "cpu": 25.3774,
+      "user": 25.1119,
+      "sys": 0.2655,
+      "rss_kb": 243780,
+      "minflt": 60349,
+      "rc": 0,
+      "steal": 0.45
+     },
+     {
+      "elapsed": 12.5497,
+      "cpu": 26.395,
+      "user": 26.0295,
+      "sys": 0.3655,
+      "rss_kb": 290636,
+      "minflt": 72047,
+      "rc": 0,
+      "steal": 0.63
+     },
+     {
+      "elapsed": 11.8744,
+      "cpu": 25.5873,
+      "user": 25.2986,
+      "sys": 0.2888,
+      "rss_kb": 290508,
+      "minflt": 72033,
+      "rc": 0,
+      "steal": 0.37
+     }
+    ],
+    "elapsed_min": 11.8744,
+    "elapsed_median": 11.9598,
+    "elapsed_stdev": 0.3677193812315763,
+    "cpu_median": 25.5873,
+    "sys_median": 0.2888,
+    "rss_kb_max": 290636
+   },
+   "revcomp-6": {
+    "name": "revcomp",
+    "id": 6,
+    "variant": "pereira2017",
+    "site_secs": null,
+    "go_version": "go version go1.9.7 linux/amd64",
+    "build_secs": 0.23,
+    "output_sha256": "e5730d4fd55c464f276e5c6062c80f46e0a735281de15d8c957e2731a9baf70e",
+    "status": "ok",
+    "samples": [
+     {
+      "elapsed": 0.3806,
+      "cpu": 0.6363,
+      "user": 0.4712,
+      "sys": 0.165,
+      "rss_kb": 135068,
+      "minflt": 33698,
+      "rc": 0,
+      "steal": 0.0
+     },
+     {
+      "elapsed": 0.4898,
+      "cpu": 0.739,
+      "user": 0.5038,
+      "sys": 0.2352,
+      "rss_kb": 135068,
+      "minflt": 33712,
+      "rc": 0,
+      "steal": 0.04
+     },
+     {
+      "elapsed": 0.4539,
+      "cpu": 0.6912,
+      "user": 0.5243,
+      "sys": 0.1669,
+      "rss_kb": 135324,
+      "minflt": 33694,
+      "rc": 0,
+      "steal": 0.03
+     }
+    ],
+    "elapsed_min": 0.3806,
+    "elapsed_median": 0.4539,
+    "elapsed_stdev": 0.05565719480294829,
+    "cpu_median": 0.6912,
+    "sys_median": 0.1669,
+    "rss_kb_max": 135324
+   },
+   "spectralnorm-4": {
+    "name": "spectralnorm",
+    "id": 4,
+    "variant": "pereira2017",
+    "site_secs": null,
+    "go_version": "go version go1.9.7 linux/amd64",
+    "build_secs": 0.26,
+    "output_sha256": "f9d5b5e3eb7657cf1bbba4cc856651864df9cd9fd9a6be9b9bc5fcbb67150deb",
+    "status": "ok",
+    "samples": [
+     {
+      "elapsed": 0.5013,
+      "cpu": 1.7148,
+      "user": 1.7025,
+      "sys": 0.0123,
+      "rss_kb": 34720,
+      "minflt": 450,
+      "rc": 0,
+      "steal": 0.05
+     },
+     {
+      "elapsed": 0.5759,
+      "cpu": 1.828,
+      "user": 1.8021,
+      "sys": 0.0259,
+      "rss_kb": 34720,
+      "minflt": 476,
+      "rc": 0,
+      "steal": 0.06
+     },
+     {
+      "elapsed": 0.5755,
+      "cpu": 1.8216,
+      "user": 1.8137,
+      "sys": 0.0079,
+      "rss_kb": 34720,
+      "minflt": 453,
+      "rc": 0,
+      "steal": 0.04
+     }
+    ],
+    "elapsed_min": 0.5013,
+    "elapsed_median": 0.5755,
+    "elapsed_stdev": 0.04295532563024056,
+    "cpu_median": 1.8216,
+    "sys_median": 0.0123,
+    "rss_kb_max": 34720
+   }
+  },
+  "go1.10.8": {
+   "binarytrees-2": {
+    "name": "binarytrees",
+    "id": 2,
+    "variant": "pereira2017",
+    "site_secs": null,
+    "go_version": "go version go1.10.8 linux/amd64",
+    "build_secs": 0.29,
+    "output_sha256": "341de11a51feab3d8122b4b5d6a68b038a2d14434aa9bc2372f39300bf5f48e1",
+    "status": "ok",
+    "samples": [
+     {
+      "elapsed": 20.6253,
+      "cpu": 75.929,
+      "user": 72.3727,
+      "sys": 3.5563,
+      "rss_kb": 394164,
+      "minflt": 153647,
+      "rc": 0,
+      "steal": 0.62
+     },
+     {
+      "elapsed": 20.3588,
+      "cpu": 74.4411,
+      "user": 70.4055,
+      "sys": 4.0356,
+      "rss_kb": 398472,
+      "minflt": 154811,
+      "rc": 0,
+      "steal": 1.19
+     },
+     {
+      "elapsed": 21.608,
+      "cpu": 79.6394,
+      "user": 75.6269,
+      "sys": 4.0125,
+      "rss_kb": 390204,
+      "minflt": 153004,
+      "rc": 0,
+      "steal": 1.43
+     }
+    ],
+    "elapsed_min": 20.3588,
+    "elapsed_median": 20.6253,
+    "elapsed_stdev": 0.6579288436702974,
+    "cpu_median": 75.929,
+    "sys_median": 4.0125,
+    "rss_kb_max": 398472
+   },
+   "fannkuchredux-1": {
+    "name": "fannkuchredux",
+    "id": 1,
+    "variant": "pereira2017",
+    "site_secs": null,
+    "go_version": "go version go1.10.8 linux/amd64",
+    "build_secs": 0.32,
+    "output_sha256": "4265a65135c506a68d90d6474003fb9030b7ee244a06c046bd89b3932a28ce20",
+    "status": "ok",
+    "samples": [
+     {
+      "elapsed": 8.5579,
+      "cpu": 33.496,
+      "user": 33.4323,
+      "sys": 0.0637,
+      "rss_kb": 34720,
+      "minflt": 225,
+      "rc": 0,
+      "steal": 0.39
+     },
+     {
+      "elapsed": 8.5457,
+      "cpu": 33.3735,
+      "user": 33.2981,
+      "sys": 0.0754,
+      "rss_kb": 34720,
+      "minflt": 228,
+      "rc": 0,
+      "steal": 0.42
+     },
+     {
+      "elapsed": 8.6125,
+      "cpu": 33.6004,
+      "user": 33.5487,
+      "sys": 0.0518,
+      "rss_kb": 34720,
+      "minflt": 216,
+      "rc": 0,
+      "steal": 0.41
+     }
+    ],
+    "elapsed_min": 8.5457,
+    "elapsed_median": 8.5579,
+    "elapsed_stdev": 0.03557208643491915,
+    "cpu_median": 33.496,
+    "sys_median": 0.0637,
+    "rss_kb_max": 34720
+   },
+   "fasta-3": {
+    "name": "fasta",
+    "id": 3,
+    "variant": "pereira2017",
+    "site_secs": null,
+    "go_version": "go version go1.10.8 linux/amd64",
+    "build_secs": 0.3,
+    "output_sha256": "3fcf4f78104c8a65ef210fe1d469f4e473456c791225f2f1f9114f4986aa09fa",
+    "status": "ok",
+    "samples": [
+     {
+      "elapsed": 1.4243,
+      "cpu": 3.8886,
+      "user": 3.7738,
+      "sys": 0.1149,
+      "rss_kb": 34720,
+      "minflt": 718,
+      "rc": 0,
+      "steal": 0.11
+     },
+     {
+      "elapsed": 1.3515,
+      "cpu": 3.788,
+      "user": 3.6574,
+      "sys": 0.1306,
+      "rss_kb": 34720,
+      "minflt": 702,
+      "rc": 0,
+      "steal": 0.03
+     },
+     {
+      "elapsed": 1.4332,
+      "cpu": 3.8267,
+      "user": 3.707,
+      "sys": 0.1197,
+      "rss_kb": 34720,
+      "minflt": 688,
+      "rc": 0,
+      "steal": 0.12
+     }
+    ],
+    "elapsed_min": 1.3515,
+    "elapsed_median": 1.4243,
+    "elapsed_stdev": 0.04482175810920409,
+    "cpu_median": 3.8267,
+    "sys_median": 0.1197,
+    "rss_kb_max": 34720
+   },
+   "knucleotide-6": {
+    "name": "knucleotide",
+    "id": 6,
+    "variant": "pereira2017",
+    "site_secs": null,
+    "go_version": "go version go1.10.8 linux/amd64",
+    "build_secs": 0.29,
+    "output_sha256": "f8c042fe770dda8f870b967605ea40ca2e353f2bdf92e89a327209dd31d445c7",
+    "status": "ok",
+    "samples": [
+     {
+      "elapsed": 7.7201,
+      "cpu": 27.3675,
+      "user": 26.9826,
+      "sys": 0.385,
+      "rss_kb": 147816,
+      "minflt": 41033,
+      "rc": 0,
+      "steal": 0.39
+     },
+     {
+      "elapsed": 7.7885,
+      "cpu": 27.4171,
+      "user": 27.0819,
+      "sys": 0.3352,
+      "rss_kb": 147944,
+      "minflt": 40792,
+      "rc": 0,
+      "steal": 0.37
+     },
+     {
+      "elapsed": 7.5461,
+      "cpu": 26.5374,
+      "user": 26.1453,
+      "sys": 0.3921,
+      "rss_kb": 147816,
+      "minflt": 41019,
+      "rc": 0,
+      "steal": 0.25
+     }
+    ],
+    "elapsed_min": 7.5461,
+    "elapsed_median": 7.7201,
+    "elapsed_stdev": 0.12497487747543506,
+    "cpu_median": 27.3675,
+    "sys_median": 0.385,
+    "rss_kb_max": 147944
+   },
+   "mandelbrot-3": {
+    "name": "mandelbrot",
+    "id": 3,
+    "variant": "pereira2017",
+    "site_secs": null,
+    "go_version": "go version go1.10.8 linux/amd64",
+    "build_secs": 0.28,
+    "output_sha256": "609262469ee6a0262ccd03932e557f745c9e7b997ad17835a02a0232a64807be",
+    "status": "ok",
+    "samples": [
+     {
+      "elapsed": 3.6221,
+      "cpu": 14.062,
+      "user": 13.9963,
+      "sys": 0.0657,
+      "rss_kb": 36032,
+      "minflt": 8952,
+      "rc": 0,
+      "steal": 0.23
+     },
+     {
+      "elapsed": 3.6429,
+      "cpu": 14.1813,
+      "user": 14.0783,
+      "sys": 0.1029,
+      "rss_kb": 36076,
+      "minflt": 8969,
+      "rc": 0,
+      "steal": 0.19
+     },
+     {
+      "elapsed": 3.6733,
+      "cpu": 14.2666,
+      "user": 14.1788,
+      "sys": 0.0878,
+      "rss_kb": 36032,
+      "minflt": 8979,
+      "rc": 0,
+      "steal": 0.24
+     }
+    ],
+    "elapsed_min": 3.6221,
+    "elapsed_median": 3.6429,
+    "elapsed_stdev": 0.02574956310308957,
+    "cpu_median": 14.1813,
+    "sys_median": 0.0878,
+    "rss_kb_max": 36076
+   },
+   "nbody-1": {
+    "name": "nbody",
+    "id": 1,
+    "variant": "pereira2017",
+    "site_secs": null,
+    "go_version": "go version go1.10.8 linux/amd64",
+    "build_secs": 0.3,
+    "output_sha256": "3e6c9ef9d26cfe312a4cd8e1b81b3f671b88fbce84de543e8c23c206a942504d",
+    "status": "ok",
+    "samples": [
+     {
+      "elapsed": 5.1146,
+      "cpu": 5.0863,
+      "user": 5.0823,
+      "sys": 0.004,
+      "rss_kb": 34720,
+      "minflt": 145,
+      "rc": 0,
+      "steal": 0.1
+     },
+     {
+      "elapsed": 5.2898,
+      "cpu": 5.2332,
+      "user": 5.2251,
+      "sys": 0.008,
+      "rss_kb": 34720,
+      "minflt": 155,
+      "rc": 0,
+      "steal": 0.12
+     },
+     {
+      "elapsed": 5.1376,
+      "cpu": 5.0988,
+      "user": 5.0908,
+      "sys": 0.008,
+      "rss_kb": 34720,
+      "minflt": 143,
+      "rc": 0,
+      "steal": 0.1
+     }
+    ],
+    "elapsed_min": 5.1146,
+    "elapsed_median": 5.1376,
+    "elapsed_stdev": 0.09520931326993844,
+    "cpu_median": 5.0988,
+    "sys_median": 0.008,
+    "rss_kb_max": 34720
+   },
+   "pidigits-3": {
+    "name": "pidigits",
+    "id": 3,
+    "variant": "pereira2017",
+    "site_secs": null,
+    "go_version": "go version go1.10.8 linux/amd64",
+    "build_secs": 0.82,
+    "output_sha256": "bdfa7b6c756d96492f472f97aee9cc139bee954d271eacedfd7ace5d2875f06c",
+    "status": "ok",
+    "samples": [
+     {
+      "elapsed": 0.8256,
+      "cpu": 0.8271,
+      "user": 0.8231,
+      "sys": 0.0039,
+      "rss_kb": 34720,
+      "minflt": 1761,
+      "rc": 0,
+      "steal": 0.01
+     },
+     {
+      "elapsed": 0.8866,
+      "cpu": 0.8629,
+      "user": 0.8508,
+      "sys": 0.0121,
+      "rss_kb": 34720,
+      "minflt": 1758,
+      "rc": 0,
+      "steal": 0.03
+     },
+     {
+      "elapsed": 0.8749,
+      "cpu": 0.8609,
+      "user": 0.845,
+      "sys": 0.0159,
+      "rss_kb": 34720,
+      "minflt": 1742,
+      "rc": 0,
+      "steal": 0.02
+     }
+    ],
+    "elapsed_min": 0.8256,
+    "elapsed_median": 0.8749,
+    "elapsed_stdev": 0.03237380628429927,
+    "cpu_median": 0.8609,
+    "sys_median": 0.0121,
+    "rss_kb_max": 34720
+   },
+   "regexredux-2": {
+    "name": "regexredux",
+    "id": 2,
+    "variant": "pereira2017",
+    "site_secs": null,
+    "go_version": "go version go1.10.8 linux/amd64",
+    "build_secs": 0.37,
+    "output_sha256": "a37e6da1d43b332d5c0f4fc25b76090e9095d4c97c25f1a7186385e87706e4af",
+    "status": "ok",
+    "samples": [
+     {
+      "elapsed": 11.5034,
+      "cpu": 25.4833,
+      "user": 25.1945,
+      "sys": 0.2887,
+      "rss_kb": 287224,
+      "minflt": 71223,
+      "rc": 0,
+      "steal": 0.34
+     },
+     {
+      "elapsed": 12.5087,
+      "cpu": 26.1411,
+      "user": 25.8075,
+      "sys": 0.3336,
+      "rss_kb": 287276,
+      "minflt": 71229,
+      "rc": 0,
+      "steal": 0.53
+     },
+     {
+      "elapsed": 11.3007,
+      "cpu": 25.5016,
+      "user": 25.2243,
+      "sys": 0.2773,
+      "rss_kb": 286996,
+      "minflt": 71230,
+      "rc": 0,
+      "steal": 0.32
+     }
+    ],
+    "elapsed_min": 11.3007,
+    "elapsed_median": 11.5034,
+    "elapsed_stdev": 0.6469131033866392,
+    "cpu_median": 25.5016,
+    "sys_median": 0.2887,
+    "rss_kb_max": 287276
+   },
+   "revcomp-6": {
+    "name": "revcomp",
+    "id": 6,
+    "variant": "pereira2017",
+    "site_secs": null,
+    "go_version": "go version go1.10.8 linux/amd64",
+    "build_secs": 0.23,
+    "output_sha256": "e5730d4fd55c464f276e5c6062c80f46e0a735281de15d8c957e2731a9baf70e",
+    "status": "ok",
+    "samples": [
+     {
+      "elapsed": 0.4081,
+      "cpu": 0.7095,
+      "user": 0.5241,
+      "sys": 0.1854,
+      "rss_kb": 135356,
+      "minflt": 33723,
+      "rc": 0,
+      "steal": 0.0
+     },
+     {
+      "elapsed": 0.4678,
+      "cpu": 0.7432,
+      "user": 0.5311,
+      "sys": 0.212,
+      "rss_kb": 135096,
+      "minflt": 33707,
+      "rc": 0,
+      "steal": 0.02
+     },
+     {
+      "elapsed": 0.4324,
+      "cpu": 0.7012,
+      "user": 0.4931,
+      "sys": 0.2081,
+      "rss_kb": 135356,
+      "minflt": 33705,
+      "rc": 0,
+      "steal": 0.01
+     }
+    ],
+    "elapsed_min": 0.4081,
+    "elapsed_median": 0.4324,
+    "elapsed_stdev": 0.0300214923013497,
+    "cpu_median": 0.7095,
+    "sys_median": 0.2081,
+    "rss_kb_max": 135356
+   },
+   "spectralnorm-4": {
+    "name": "spectralnorm",
+    "id": 4,
+    "variant": "pereira2017",
+    "site_secs": null,
+    "go_version": "go version go1.10.8 linux/amd64",
+    "build_secs": 0.28,
+    "output_sha256": "f9d5b5e3eb7657cf1bbba4cc856651864df9cd9fd9a6be9b9bc5fcbb67150deb",
+    "status": "ok",
+    "samples": [
+     {
+      "elapsed": 0.4743,
+      "cpu": 1.729,
+      "user": 1.725,
+      "sys": 0.004,
+      "rss_kb": 34720,
+      "minflt": 446,
+      "rc": 0,
+      "steal": 0.02
+     },
+     {
+      "elapsed": 0.5797,
+      "cpu": 1.8693,
+      "user": 1.859,
+      "sys": 0.0103,
+      "rss_kb": 34720,
+      "minflt": 446,
+      "rc": 0,
+      "steal": 0.04
+     },
+     {
+      "elapsed": 0.6016,
+      "cpu": 1.8317,
+      "user": 1.812,
+      "sys": 0.0198,
+      "rss_kb": 34720,
+      "minflt": 467,
+      "rc": 0,
+      "steal": 0.07
+     }
+    ],
+    "elapsed_min": 0.4743,
+    "elapsed_median": 0.5797,
+    "elapsed_stdev": 0.06806132039075743,
+    "cpu_median": 1.8317,
+    "sys_median": 0.0103,
+    "rss_kb_max": 34720
+   }
+  },
+  "go1.27.1": {
+   "binarytrees-2": {
+    "name": "binarytrees",
+    "id": 2,
+    "variant": "pereira2017",
+    "site_secs": null,
+    "go_version": "go version go1.27.1 linux/amd64",
+    "build_secs": 0.23,
+    "output_sha256": "341de11a51feab3d8122b4b5d6a68b038a2d14434aa9bc2372f39300bf5f48e1",
+    "status": "ok",
+    "samples": [
+     {
+      "elapsed": 12.5223,
+      "cpu": 43.7382,
+      "user": 42.6939,
+      "sys": 1.0444,
+      "rss_kb": 332952,
+      "minflt": 110558,
+      "rc": 0,
+      "steal": 0.67
+     },
+     {
+      "elapsed": 12.6268,
+      "cpu": 44.4027,
+      "user": 43.389,
+      "sys": 1.0137,
+      "rss_kb": 324516,
+      "minflt": 100677,
+      "rc": 0,
+      "steal": 0.74
+     },
+     {
+      "elapsed": 12.3153,
+      "cpu": 43.1785,
+      "user": 42.1782,
+      "sys": 1.0003,
+      "rss_kb": 324260,
+      "minflt": 103799,
+      "rc": 0,
+      "steal": 0.52
+     }
+    ],
+    "elapsed_min": 12.3153,
+    "elapsed_median": 12.5223,
+    "elapsed_stdev": 0.15853574780891888,
+    "cpu_median": 43.7382,
+    "sys_median": 1.0137,
+    "rss_kb_max": 332952
+   },
+   "fannkuchredux-1": {
+    "name": "fannkuchredux",
+    "id": 1,
+    "variant": "pereira2017",
+    "site_secs": null,
+    "go_version": "go version go1.27.1 linux/amd64",
+    "build_secs": 0.27,
+    "output_sha256": "4265a65135c506a68d90d6474003fb9030b7ee244a06c046bd89b3932a28ce20",
+    "status": "ok",
+    "samples": [
+     {
+      "elapsed": 8.6274,
+      "cpu": 33.6931,
+      "user": 33.5594,
+      "sys": 0.1336,
+      "rss_kb": 34720,
+      "minflt": 592,
+      "rc": 0,
+      "steal": 0.53
+     },
+     {
+      "elapsed": 8.7087,
+      "cpu": 34.0678,
+      "user": 33.9083,
+      "sys": 0.1595,
+      "rss_kb": 34720,
+      "minflt": 597,
+      "rc": 0,
+      "steal": 0.44
+     },
+     {
+      "elapsed": 8.6162,
+      "cpu": 33.7792,
+      "user": 33.5954,
+      "sys": 0.1838,
+      "rss_kb": 34720,
+      "minflt": 614,
+      "rc": 0,
+      "steal": 0.35
+     }
+    ],
+    "elapsed_min": 8.6162,
+    "elapsed_median": 8.6274,
+    "elapsed_stdev": 0.05048329756794208,
+    "cpu_median": 33.7792,
+    "sys_median": 0.1595,
+    "rss_kb_max": 34720
+   },
+   "fasta-3": {
+    "name": "fasta",
+    "id": 3,
+    "variant": "pereira2017",
+    "site_secs": null,
+    "go_version": "go version go1.27.1 linux/amd64",
+    "build_secs": 0.27,
+    "output_sha256": "3fcf4f78104c8a65ef210fe1d469f4e473456c791225f2f1f9114f4986aa09fa",
+    "status": "ok",
+    "samples": [
+     {
+      "elapsed": 1.4975,
+      "cpu": 3.7642,
+      "user": 3.6348,
+      "sys": 0.1293,
+      "rss_kb": 34720,
+      "minflt": 1046,
+      "rc": 0,
+      "steal": 0.1
+     },
+     {
+      "elapsed": 1.4841,
+      "cpu": 3.7609,
+      "user": 3.6127,
+      "sys": 0.1481,
+      "rss_kb": 34720,
+      "minflt": 1063,
+      "rc": 0,
+      "steal": 0.11
+     },
+     {
+      "elapsed": 1.4661,
+      "cpu": 3.7715,
+      "user": 3.6111,
+      "sys": 0.1604,
+      "rss_kb": 34720,
+      "minflt": 1074,
+      "rc": 0,
+      "steal": 0.07
+     }
+    ],
+    "elapsed_min": 1.4661,
+    "elapsed_median": 1.4841,
+    "elapsed_stdev": 0.01575605703636969,
+    "cpu_median": 3.7642,
+    "sys_median": 0.1481,
+    "rss_kb_max": 34720
+   },
+   "knucleotide-6": {
+    "name": "knucleotide",
+    "id": 6,
+    "variant": "pereira2017",
+    "site_secs": null,
+    "go_version": "go version go1.27.1 linux/amd64",
+    "build_secs": 0.28,
+    "output_sha256": "f8c042fe770dda8f870b967605ea40ca2e353f2bdf92e89a327209dd31d445c7",
+    "status": "ok",
+    "samples": [
+     {
+      "elapsed": 4.4531,
+      "cpu": 14.6996,
+      "user": 14.5333,
+      "sys": 0.1663,
+      "rss_kb": 146048,
+      "minflt": 36312,
+      "rc": 0,
+      "steal": 0.23
+     },
+     {
+      "elapsed": 4.5941,
+      "cpu": 15.7743,
+      "user": 15.5491,
+      "sys": 0.2252,
+      "rss_kb": 145788,
+      "minflt": 36300,
+      "rc": 0,
+      "steal": 0.3
+     },
+     {
+      "elapsed": 4.3972,
+      "cpu": 15.1687,
+      "user": 14.9385,
+      "sys": 0.2302,
+      "rss_kb": 146044,
+      "minflt": 36317,
+      "rc": 0,
+      "steal": 0.14
+     }
+    ],
+    "elapsed_min": 4.3972,
+    "elapsed_median": 4.4531,
+    "elapsed_stdev": 0.10146873081562299,
+    "cpu_median": 15.1687,
+    "sys_median": 0.2252,
+    "rss_kb_max": 146048
+   },
+   "mandelbrot-3": {
+    "name": "mandelbrot",
+    "id": 3,
+    "variant": "pereira2017",
+    "site_secs": null,
+    "go_version": "go version go1.27.1 linux/amd64",
+    "build_secs": 0.27,
+    "output_sha256": "609262469ee6a0262ccd03932e557f745c9e7b997ad17835a02a0232a64807be",
+    "status": "ok",
+    "samples": [
+     {
+      "elapsed": 3.5369,
+      "cpu": 13.8,
+      "user": 13.6016,
+      "sys": 0.1984,
+      "rss_kb": 36232,
+      "minflt": 9001,
+      "rc": 0,
+      "steal": 0.18
+     },
+     {
+      "elapsed": 3.5259,
+      "cpu": 13.7911,
+      "user": 13.6497,
+      "sys": 0.1414,
+      "rss_kb": 36360,
+      "minflt": 9014,
+      "rc": 0,
+      "steal": 0.13
+     },
+     {
+      "elapsed": 3.4973,
+      "cpu": 13.6897,
+      "user": 13.5853,
+      "sys": 0.1043,
+      "rss_kb": 36104,
+      "minflt": 8998,
+      "rc": 0,
+      "steal": 0.1
+     }
+    ],
+    "elapsed_min": 3.4973,
+    "elapsed_median": 3.5259,
+    "elapsed_stdev": 0.02044146113499068,
+    "cpu_median": 13.7911,
+    "sys_median": 0.1414,
+    "rss_kb_max": 36360
+   },
+   "nbody-1": {
+    "name": "nbody",
+    "id": 1,
+    "variant": "pereira2017",
+    "site_secs": null,
+    "go_version": "go version go1.27.1 linux/amd64",
+    "build_secs": 0.26,
+    "output_sha256": "3e6c9ef9d26cfe312a4cd8e1b81b3f671b88fbce84de543e8c23c206a942504d",
+    "status": "ok",
+    "samples": [
+     {
+      "elapsed": 5.2951,
+      "cpu": 5.2943,
+      "user": 5.2592,
+      "sys": 0.0351,
+      "rss_kb": 34720,
+      "minflt": 250,
+      "rc": 0,
+      "steal": 0.05
+     },
+     {
+      "elapsed": 5.4553,
+      "cpu": 5.438,
+      "user": 5.41,
+      "sys": 0.028,
+      "rss_kb": 34720,
+      "minflt": 246,
+      "rc": 0,
+      "steal": 0.06
+     },
+     {
+      "elapsed": 5.2299,
+      "cpu": 5.2253,
+      "user": 5.1971,
+      "sys": 0.0281,
+      "rss_kb": 34720,
+      "minflt": 249,
+      "rc": 0,
+      "steal": 0.05
+     }
+    ],
+    "elapsed_min": 5.2299,
+    "elapsed_median": 5.2951,
+    "elapsed_stdev": 0.11598867760834847,
+    "cpu_median": 5.2943,
+    "sys_median": 0.0281,
+    "rss_kb_max": 34720
+   },
+   "pidigits-3": {
+    "name": "pidigits",
+    "id": 3,
+    "variant": "pereira2017",
+    "site_secs": null,
+    "go_version": "go version go1.27.1 linux/amd64",
+    "build_secs": 0.93,
+    "output_sha256": "bdfa7b6c756d96492f472f97aee9cc139bee954d271eacedfd7ace5d2875f06c",
+    "status": "ok",
+    "samples": [
+     {
+      "elapsed": 0.7959,
+      "cpu": 0.8834,
+      "user": 0.8602,
+      "sys": 0.0233,
+      "rss_kb": 34720,
+      "minflt": 563,
+      "rc": 0,
+      "steal": 0.02
+     },
+     {
+      "elapsed": 0.8023,
+      "cpu": 0.8943,
+      "user": 0.8855,
+      "sys": 0.0089,
+      "rss_kb": 34720,
+      "minflt": 595,
+      "rc": 0,
+      "steal": 0.02
+     },
+     {
+      "elapsed": 0.7681,
+      "cpu": 0.8477,
+      "user": 0.8433,
+      "sys": 0.0045,
+      "rss_kb": 34720,
+      "minflt": 573,
+      "rc": 0,
+      "steal": 0.02
+     }
+    ],
+    "elapsed_min": 0.7681,
+    "elapsed_median": 0.7959,
+    "elapsed_stdev": 0.018181675757017936,
+    "cpu_median": 0.8834,
+    "sys_median": 0.0089,
+    "rss_kb_max": 34720
+   },
+   "regexredux-2": {
+    "name": "regexredux",
+    "id": 2,
+    "variant": "pereira2017",
+    "site_secs": null,
+    "go_version": "go version go1.27.1 linux/amd64",
+    "build_secs": 0.61,
+    "output_sha256": "a37e6da1d43b332d5c0f4fc25b76090e9095d4c97c25f1a7186385e87706e4af",
+    "status": "ok",
+    "samples": [
+     {
+      "elapsed": 12.0129,
+      "cpu": 26.1406,
+      "user": 25.227,
+      "sys": 0.9135,
+      "rss_kb": 315092,
+      "minflt": 80335,
+      "rc": 0,
+      "steal": 0.35
+     },
+     {
+      "elapsed": 12.3415,
+      "cpu": 26.5146,
+      "user": 25.5807,
+      "sys": 0.934,
+      "rss_kb": 316248,
+      "minflt": 80266,
+      "rc": 0,
+      "steal": 0.32
+     },
+     {
+      "elapsed": 12.0808,
+      "cpu": 26.1504,
+      "user": 25.1747,
+      "sys": 0.9757,
+      "rss_kb": 326796,
+      "minflt": 81158,
+      "rc": 0,
+      "steal": 0.41
+     }
+    ],
+    "elapsed_min": 12.0129,
+    "elapsed_median": 12.0808,
+    "elapsed_stdev": 0.17347087171434084,
+    "cpu_median": 26.1504,
+    "sys_median": 0.934,
+    "rss_kb_max": 326796
+   },
+   "revcomp-6": {
+    "name": "revcomp",
+    "id": 6,
+    "variant": "pereira2017",
+    "site_secs": null,
+    "go_version": "go version go1.27.1 linux/amd64",
+    "build_secs": 0.24,
+    "output_sha256": "e5730d4fd55c464f276e5c6062c80f46e0a735281de15d8c957e2731a9baf70e",
+    "status": "ok",
+    "samples": [
+     {
+      "elapsed": 0.3698,
+      "cpu": 0.5528,
+      "user": 0.3999,
+      "sys": 0.1528,
+      "rss_kb": 132084,
+      "minflt": 32883,
+      "rc": 0,
+      "steal": 0.02
+     },
+     {
+      "elapsed": 0.3569,
+      "cpu": 0.5324,
+      "user": 0.3477,
+      "sys": 0.1848,
+      "rss_kb": 132212,
+      "minflt": 32883,
+      "rc": 0,
+      "steal": 0.0
+     },
+     {
+      "elapsed": 0.3729,
+      "cpu": 0.5345,
+      "user": 0.3699,
+      "sys": 0.1646,
+      "rss_kb": 132340,
+      "minflt": 32913,
+      "rc": 0,
+      "steal": 0.02
+     }
+    ],
+    "elapsed_min": 0.3569,
+    "elapsed_median": 0.3698,
+    "elapsed_stdev": 0.008485477790515599,
+    "cpu_median": 0.5345,
+    "sys_median": 0.1646,
+    "rss_kb_max": 132340
+   },
+   "spectralnorm-4": {
+    "name": "spectralnorm",
+    "id": 4,
+    "variant": "pereira2017",
+    "site_secs": null,
+    "go_version": "go version go1.27.1 linux/amd64",
+    "build_secs": 0.24,
+    "output_sha256": "f9d5b5e3eb7657cf1bbba4cc856651864df9cd9fd9a6be9b9bc5fcbb67150deb",
+    "status": "ok",
+    "samples": [
+     {
+      "elapsed": 0.5028,
+      "cpu": 1.8672,
+      "user": 1.8554,
+      "sys": 0.0117,
+      "rss_kb": 34720,
+      "minflt": 568,
+      "rc": 0,
+      "steal": 0.01
+     },
+     {
+      "elapsed": 0.5038,
+      "cpu": 1.8539,
+      "user": 1.8457,
+      "sys": 0.0081,
+      "rss_kb": 34720,
+      "minflt": 548,
+      "rc": 0,
+      "steal": 0.02
+     },
+     {
+      "elapsed": 0.6165,
+      "cpu": 2.0101,
+      "user": 1.9903,
+      "sys": 0.0198,
+      "rss_kb": 34720,
+      "minflt": 549,
+      "rc": 0,
+      "steal": 0.06
+     }
+    ],
+    "elapsed_min": 0.5028,
+    "elapsed_median": 0.5038,
+    "elapsed_stdev": 0.06535796304455438,
+    "cpu_median": 1.8672,
+    "sys_median": 0.0117,
+    "rss_kb_max": 34720
+   }
+  }
+ },
+ "finished": "2026-09-25T12:07:59+00:00"
+}
