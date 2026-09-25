@@ -209,6 +209,31 @@ Go zeroes memory when it allocates, not after use, and the CPU-bound programs ba
   instructions. Go is built with its default fast-compiling toolchain at `GOAMD64=v2`, and keeps slice bounds checks where it
   cannot prove them unnecessary.
 
+### Note: binary-trees with pre-allocated nodes
+
+`programs/binarytrees/binarytrees-arena.go` builds the same trees, but in a pre-allocated node slice for each worker, reused for every tree.
+Children are `int32` indices, not pointers, so the GC never scans the nodes, and nothing is allocated after start-up. Output is
+byte-identical to the reference. It is **not Benchmarks Game eligible**: the rules reject hand-written memory pools. The C
+entry reaches the same effect with the APR pool library.
+
+Measured on go1.27.1 against Go #2 (5 interleaved runs; a shared 4-vCPU VM, not the GCP machine):
+
+| | Go #2 | pre-allocated | ratio |
+|---|---:|---:|---:|
+| elapsed | 11.28 s | 1.09 s | 0.097 |
+| CPU | 42.85 s | 3.41 s | 0.079 |
+| peak memory | 594 MB | 131 MB | 0.22 |
+
+**Projected onto the GCP results** by applying those ratios to binary-trees and leaving the other 11 programs unchanged (go1.27.1):
+
+* binary-trees: 6.08 s → **~0.59 s**, 23.8 → ~1.9 CPU-s, 642 → ~140 MB; modelled energy 1,789 J → ~172 J
+* whole suite: geomean elapsed **−17.7%** (2.41 s → 1.99 s), total CPU **−15.8%**, modelled energy **−11.6%**
+* against C: on the site's machine, Go #2 takes 14.21 s against C gcc #2's 1.56 s. The same ratio puts pre-allocated Go at ~1.4 s,
+  about level with C
+
+To confirm on the GCP machine:
+`sudo -E ./bench.py run --config benchmarks-binarytrees-arena.json --go go1.27.1 --runs 5 --drop-caches`
+
 ## Energy
 
 `scripts/energy.py` estimates the energy change between two releases without a power meter. It uses the linear model fitted
