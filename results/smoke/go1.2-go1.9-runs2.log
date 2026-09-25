@@ -7,3 +7,4 @@
   nbody-3: built in 0.3s, output ok, full run 9.99s
   pidigits-4: built in 0.6s, output ok, full run 0.74s
   pidigits-6: built in 0.4s, output ok, full run 2.53s
+  regexredux-5: built in 0.8s, output ok, full run 2.62s
