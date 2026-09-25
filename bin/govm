@@ -1,0 +1,121 @@
+#!/usr/bin/env bash
+# govm — a tiny Go version manager.
+#
+# Toolchains are fetched from the Go module proxy (golang.org/toolchain module,
+# the same source `GOTOOLCHAIN=goX.Y.Z` uses), so it works anywhere
+# proxy.golang.org is reachable. Every release back to go1.2.2 is published there.
+#
+#   govm list-remote [--all]   latest patch of every go1.N (or every version with --all)
+#   govm install <version>     e.g. govm install go1.27.1   (or 1.27 -> latest 1.27.x)
+#   govm list                  installed versions
+#   govm which <version>       path to GOROOT of an installed version
+#   govm env <version>         prints `export` lines; use: eval "$(govm env go1.27.1)"
+#   govm uninstall <version>
+#
+# Env: GOVM_ROOT (default ~/.govm), GOVM_PROXY (default https://proxy.golang.org)
+set -euo pipefail
+
+GOVM_ROOT="${GOVM_ROOT:-$HOME/.govm}"
+GOVM_PROXY="${GOVM_PROXY:-https://proxy.golang.org}"
+MOD="golang.org/toolchain"
+
+die() { echo "govm: $*" >&2; exit 1; }
+
+platform() {
+  local os arch
+  case "$(uname -s)" in
+    Linux) os=linux ;; Darwin) os=darwin ;; FreeBSD) os=freebsd ;;
+    *) die "unsupported OS $(uname -s)" ;;
+  esac
+  case "$(uname -m)" in
+    x86_64|amd64) arch=amd64 ;; aarch64|arm64) arch=arm64 ;;
+    i386|i686) arch=386 ;; armv6l|armv7l) arch=armv6l ;;
+    *) die "unsupported arch $(uname -m)" ;;
+  esac
+  echo "$os-$arch"
+}
+
+remote_versions() {
+  local plat; plat="$(platform)"
+  curl -fsSL "$GOVM_PROXY/$MOD/@v/list" \
+    | sed -n "s/^v0\.0\.1-\(go[0-9.a-z]*\)\.$plat\$/\1/p" \
+    | sort -V
+}
+
+# stable releases only, latest patch per minor: go1.27.1, go1.26.8, ...
+remote_latest_per_minor() {
+  remote_versions | grep -Ev '(rc|beta)' | awk -F. '
+    { key=$1"."$2; last[key]=$0; if (!(key in seen)) { seen[key]=1; order[++n]=key } }
+    END { for (i=1;i<=n;i++) print last[order[i]] }' | sort -V
+}
+
+normalize() {
+  local v="${1#go}"; v="go$v"
+  # "go1.27" (no patch) -> newest go1.27.x (go1.20 and earlier used "go1.20" for .0)
+  if [[ "$v" =~ ^go1\.[0-9]+$ ]]; then
+    local best; best="$(remote_versions | grep -E "^${v//./\\.}(\.[0-9]+)?$" | sort -V | tail -1)"
+    [[ -n "$best" ]] || die "no release matches $v"
+    v="$best"
+  fi
+  echo "$v"
+}
+
+cmd_install() {
+  [[ $# -ge 1 ]] || die "usage: govm install <version>"
+  local v plat dest url tmp
+  v="$(normalize "$1")"; plat="$(platform)"
+  dest="$GOVM_ROOT/$v"
+  if [[ -x "$dest/bin/go" ]]; then echo "$v already installed at $dest"; return; fi
+  mkdir -p "$GOVM_ROOT"
+  tmp="$(mktemp -d "$GOVM_ROOT/.tmp.XXXXXX")"
+  trap 'rm -rf "$tmp"' RETURN
+  url="$GOVM_PROXY/$MOD/@v/v0.0.1-$v.$plat.zip"
+  echo "govm: downloading $v ($plat) from $GOVM_PROXY" >&2
+  curl -fSL --retry 4 --retry-delay 2 -o "$tmp/tc.zip" "$url" || die "download failed: $url"
+  # Verify against the Go checksum database when a go binary is available.
+  if command -v go >/dev/null 2>&1 && [[ "${GOVM_NOVERIFY:-}" != 1 ]]; then
+    local want got
+    want="$(curl -fsSL "https://sum.golang.org/lookup/$MOD@v0.0.1-$v.$plat" 2>/dev/null \
+            | awk -v m="$MOD" '$1==m && $3 ~ /^h1:/ && $2 !~ /go.mod$/ {print $3; exit}')" || true
+    if [[ -n "$want" ]]; then
+      got="$(cd "$(dirname "$0")/../scripts" 2>/dev/null && GOTOOLCHAIN=local go run ./ziphash "$tmp/tc.zip" 2>/dev/null)" || true
+      if [[ -n "$got" ]]; then
+        [[ "$got" == "$want" ]] || die "checksum mismatch for $v: got $got want $want"
+        echo "govm: checksum verified against sum.golang.org ($want)" >&2
+      fi
+    fi
+  fi
+  (cd "$tmp" && unzip -q tc.zip)
+  local inner="$tmp/$MOD@v0.0.1-$v.$plat"
+  [[ -d "$inner" ]] || die "unexpected zip layout"
+  # module zips drop the exec bit
+  chmod -R u+w "$inner"
+  find "$inner/bin" "$inner/pkg/tool" -type f -exec chmod +x {} + 2>/dev/null || true
+  mv "$inner" "$dest"
+  echo "installed $v -> $dest"
+}
+
+cmd_list() { ls -1 "$GOVM_ROOT" 2>/dev/null | grep '^go' | sort -V || true; }
+
+cmd_which() {
+  local v; v="go${1#go}"
+  [[ -x "$GOVM_ROOT/$v/bin/go" ]] || die "$v not installed (govm install $v)"
+  echo "$GOVM_ROOT/$v"
+}
+
+cmd_env() {
+  local r; r="$(cmd_which "$1")"
+  echo "export GOROOT='$r'"
+  echo "export PATH='$r/bin':\"\$PATH\""
+  echo "export GOTOOLCHAIN=local"
+}
+
+case "${1:-}" in
+  list-remote) shift; if [[ "${1:-}" == --all ]]; then remote_versions; else remote_latest_per_minor; fi ;;
+  install)     shift; for v in "$@"; do cmd_install "$v"; done ;;
+  list|ls)     cmd_list ;;
+  which)       shift; cmd_which "$@" ;;
+  env|use)     shift; cmd_env "$@" ;;
+  uninstall)   shift; rm -rf "$GOVM_ROOT/go${1#go}" ;;
+  *) sed -n '2,16p' "$0" | sed 's/^# \{0,1\}//'; exit 1 ;;
+esac
