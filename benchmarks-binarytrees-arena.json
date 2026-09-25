@@ -1,0 +1,9 @@
+{
+  "_comment": "binary-trees energy comparison: the Pereira et al. 2017 program, today's fastest site program (#2), and a pre-allocated pointer-free arena variant (not Benchmarks Game eligible).",
+  "goamd64": "v1",
+  "benchmarks": [
+    {"name": "binarytrees", "id": "p2017", "variant": "pereira2017", "src": "pereira2017/binarytrees.go-2.go", "args": ["21"], "check_args": ["10"], "check_out": "binarytrees-output.txt", "paper_joules": 636.71, "paper_ms": 16292},
+    {"name": "binarytrees", "id": 2, "variant": "site-fastest", "src": "binarytrees/binarytrees.go-2.compat.go", "args": ["21"], "check_args": ["10"], "check_out": "binarytrees-output.txt"},
+    {"name": "binarytrees", "id": "arena", "variant": "arena", "src": "binarytrees/binarytrees-arena.go", "args": ["21"], "check_args": ["10"], "check_out": "binarytrees-output.txt"}
+  ]
+}
