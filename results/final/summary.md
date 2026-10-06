@@ -1,10 +1,37 @@
 # Results
 
-## 1.23 vs 1.27 (same machine, interleaved)
+This report gives the results of the GCP test run on 2026-09-25.
+For the procedure and the limits of the results, refer to the [README](../../README.md).
 
-![](plots/go1.23.12-vs-go1.27.1.png)
+## Test conditions
 
-### Median elapsed seconds, 5 interleaved runs (Intel(R) Xeon(R) Platinum 8481C CPU @ 2.70GHz ×4)
+| item | value |
+|---|---|
+| machine | GCP `c3-standard-8 --threads-per-core=1` |
+| CPU | 4 physical cores, Intel Xeon Platinum 8481C at 2.70 GHz |
+| memory | 32 GB RAM |
+| Go releases | 26 (latest patch of each minor release, go1.2.2 to go1.27.1) |
+| programs | 12 |
+| runs | 5 for each program on each release, in alternate sequence |
+| settings | `--drop-caches`, `GOAMD64=v2` |
+
+## Summary
+
+- Go 1.27.1 is 11.5% faster than go1.23.12. This value is the geometric mean of the elapsed time.
+- Go 1.27.1 uses 12.3% less CPU time than go1.23.12.
+- k-nucleotide is 57.5% faster. binary-trees is 30.7% faster. pidigits (pure Go) is 15.9% faster.
+- The numeric programs changed by less than 1%. These programs are n-body, mandelbrot, spectral-norm and fasta.
+- reverse-complement is 3.1% slower. Its peak memory increased by 29%.
+
+## go1.23 compared with go1.27
+
+![Change in elapsed time per program, go1.23.12 to go1.27.1](plots/go1.23.12-vs-go1.27.1.png)
+
+### Elapsed time on go1.23 to go1.27
+
+The table shows the median elapsed time in seconds. A lower value is better.
+Each value is the median of 5 runs. The "±" value is the standard deviation of the 5 runs.
+The last column shows the change from go1.23.12 to go1.27.1. A negative value means that the program is faster.
 
 | program | go1.23.12 | go1.24.13 | go1.25.14 | go1.26.8 | go1.27.1 | 1.23→1.27 |
 |---|---:|---:|---:|---:|---:|---:|
@@ -20,11 +47,14 @@
 | regex-redux #3 (pure Go) | 18.265 ±1.05 | 18.175 ±0.98 | 18.379 ±0.86 | 17.628 ±0.67 | 17.922 ±0.41 | **-1.9%** |
 | reverse-complement #6 | 1.665 ±0.01 | 1.737 ±0.01 | 1.724 ±0.01 | 1.714 ±0.01 | 1.717 ±0.01 | **+3.1%** |
 | spectral-norm #4 | 0.426 ±0.00 | 0.426 ±0.00 | 0.430 ±0.00 | 0.429 ±0.00 | 0.430 ±0.00 | **+0.8%** |
-| **geomean vs 1.23** | 1.000 | 0.937 | 0.916 | 0.897 | 0.885 | **-11.5%** |
+| **geometric mean, relative to 1.23** | 1.000 | 0.937 | 0.916 | 0.897 | 0.885 | **-11.5%** |
 
-### 1.23 → 1.27: cpu seconds and peak memory
+### CPU time and peak memory, go1.23.12 compared with go1.27.1
 
-| program | cpu 1.23 | cpu 1.27 | Δ cpu | mem MB 1.23 | mem MB 1.27 | Δ mem |
+CPU time is user time plus system time on all threads, in seconds.
+Peak memory is the maximum resident set size, in MB.
+
+| program | CPU 1.23 (s) | CPU 1.27 (s) | change in CPU | memory 1.23 (MB) | memory 1.27 (MB) | change in memory |
 |---|---:|---:|---:|---:|---:|---:|
 | binary-trees #2 | 34.60 | 23.77 | -31.3% | 636 | 642 | +0.9% |
 | fannkuch-redux #3 | 29.72 | 29.29 | -1.5% | 36 | 36 | +0.0% |
@@ -39,7 +69,9 @@
 | reverse-complement #6 | 2.85 | 2.75 | -3.4% | 1,222 | 1,581 | +29.4% |
 | spectral-norm #4 | 1.63 | 1.63 | +0.0% | 36 | 36 | +0.0% |
 
-## Across every release (smoke sweep, 1 run each)
+## All releases, go1.2.2 to go1.27.1
+
+Each chart shows one program in each panel. Each point is the median of 5 runs on one release.
 
 ![Elapsed time by Go release](plots/elapsed-by-version.png)
 
@@ -47,5 +79,5 @@
 
 ![Peak memory by Go release](plots/memory-by-version.png)
 
-![Build time by Go release (compile + link, warm stdlib)](plots/build-by-version.png)
+![Build time by Go release (compile and link, standard library already built)](plots/build-by-version.png)
 
